@@ -688,12 +688,15 @@ line-height:1.6;
   </button>
 </div>
 
-        <div class="earning-card">
-          <div class="earning-icon">🧠</div>
-          <h4>Quick Quiz</h4>
-          <p>Test your knowledge with short interactive quizzes.</p>
-          <div class="earning-reward">Coming soon</div>
-        </div>
+    <div class="earning-card">
+  <div class="earning-icon">🧠</div>
+  <h4>Quick Quiz</h4>
+  <p>Answer short questions, test your knowledge and collect demo rewards.</p>
+  <div class="earning-reward">Earn demo credits</div>
+  <button class="primary-btn" onclick="showQuiz()">
+    Start Quiz
+  </button>
+</div>
 
         <div class="earning-card">
           <div class="earning-icon">🎡</div>
@@ -730,6 +733,84 @@ line-height:1.6;
 
   </main>
 </section>
+  
+  
+  
+<!-- QUICK QUIZ SCREEN -->
+
+<section id="quizScreen" class="hidden">
+
+  <header class="dashboard-header">
+    <div class="brand">MY<span>FIN</span></div>
+    <button class="secondary-btn" onclick="closeQuiz()">
+      Back to Dashboard
+    </button>
+  </header>
+
+  <main class="dashboard-main">
+
+    <h2>MYFIN Quick Quiz 🧠</h2>
+
+    <p style="color:#91a5c5;margin:12px 0 25px">
+      Test your knowledge and earn demonstration reward credits.
+    </p>
+
+    <div class="balance-card">
+      <div class="balance-label">YOUR QUIZ REWARDS</div>
+      <div class="balance-amount" id="quizCredits">₦0.00</div>
+      <div class="balance-footer">
+        <span>MYFIN Rewards</span>
+        <span>Demo Credits Only</span>
+      </div>
+    </div>
+
+    <div class="earning-card" id="quizContainer">
+
+      <div class="earning-reward" id="quizProgress">
+        QUESTION 1 OF 3
+      </div>
+
+      <h3 id="quizQuestion" style="margin:18px 0">
+        Loading question...
+      </h3>
+
+      <div id="quizAnswers"></div>
+
+      <p id="quizFeedback"
+        style="margin-top:18px;font-size:13px;color:#91a5c5">
+      </p>
+
+      <button
+        class="primary-btn"
+        id="nextQuizButton"
+        onclick="nextQuizQuestion()"
+        style="display:none;width:100%;margin-top:20px">
+        Next Question
+      </button>
+
+    </div>
+
+    <div class="activity-card" id="quizResult"
+      style="display:none;margin-top:20px;text-align:center">
+
+      <h2>Quiz Completed! 🎉</h2>
+
+      <p id="quizScore" style="margin:15px 0"></p>
+
+      <button class="primary-btn" onclick="restartQuiz()">
+        Try Again
+      </button>
+
+    </div>
+
+    <p class="notice">
+      Quiz rewards are demonstration credits only.
+      They are not real money and cannot be withdrawn.
+    </p>
+
+  </main>
+</section>
+
   
   <!-- DAILY TASKS SCREEN -->
 
