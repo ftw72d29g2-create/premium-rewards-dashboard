@@ -1068,6 +1068,209 @@ async function logoutUser() {
   }
 }
 
+/* MYFIN QUICK QUIZ FEATURE */
+
+const myfinQuizQuestions = [
+  {
+    question: 'What is the main purpose of saving money?',
+    answers: [
+      'To spend everything immediately',
+      'To prepare for future needs',
+      'To avoid planning'
+    ],
+    correct: 1
+  },
+  {
+    question: 'Which habit helps build financial discipline?',
+    answers: [
+      'Saving consistently',
+      'Ignoring your expenses',
+      'Spending without a budget'
+    ],
+    correct: 0
+  },
+  {
+    question: 'What is an emergency fund?',
+    answers: [
+      'Money for entertainment',
+      'Money reserved for unexpected expenses',
+      'Money borrowed from friends'
+    ],
+    correct: 1
+  }
+];
+
+let quizQuestionIndex = 0;
+let quizScore = 0;
+let quizAnswered = false;
+
+function getQuizData() {
+  const today = new Date().toISOString().slice(0, 10);
+  const saved = JSON.parse(
+    localStorage.getItem('myfinQuizData') || '{}'
+  );
+
+  if (saved.date !== today) {
+    return {
+      date: today,
+      credits: 0,
+      completed: false
+    };
+  }
+
+  return saved;
+}
+
+function showQuiz() {
+  landing.classList.add('hidden');
+  login.classList.add('hidden');
+  dashboard.classList.add('hidden');
+
+  document.getElementById('dailyTasksScreen').classList.add('hidden');
+  document.getElementById('quizScreen').classList.remove('hidden');
+
+  quizQuestionIndex = 0;
+  quizScore = 0;
+  quizAnswered = false;
+
+  renderQuiz();
+  window.scrollTo(0, 0);
+}
+
+function closeQuiz() {
+  document.getElementById('quizScreen').classList.add('hidden');
+  showDashboard();
+}
+
+function renderQuiz() {
+  const data = getQuizData();
+
+  document.getElementById('quizCredits').textContent =
+    '₦' + data.credits.toLocaleString('en-NG') + '.00';
+
+  const nextButton = document.getElementById('nextQuizButton');
+  const resultBox = document.getElementById('quizResult');
+  const container = document.getElementById('quizContainer');
+
+  if (data.completed) {
+    container.style.display = 'none';
+    resultBox.style.display = 'block';
+
+    document.getElementById('quizScore').textContent =
+      'You have already completed today’s quiz. Come back tomorrow!';
+
+    return;
+  }
+
+  container.style.display = 'block';
+  resultBox.style.display = 'none';
+  nextButton.style.display = 'none';
+
+  const current = myfinQuizQuestions[quizQuestionIndex];
+
+  document.getElementById('quizProgress').textContent =
+    'QUESTION ' + (quizQuestionIndex + 1) +
+    ' OF ' + myfinQuizQuestions.length;
+
+  document.getElementById('quizQuestion').textContent =
+    current.question;
+
+  document.getElementById('quizFeedback').textContent = '';
+
+  document.getElementById('quizAnswers').innerHTML =
+    current.answers.map((answer, index) =>
+      '<button type="button" class="secondary-btn" ' +
+      'style="display:block;width:100%;margin-top:12px;text-align:left" ' +
+      'onclick="selectQuizAnswer(' + index + ')">' +
+      answer +
+      '</button>'
+    ).join('');
+}
+
+function selectQuizAnswer(answerIndex) {
+  if (quizAnswered) return;
+
+  quizAnswered = true;
+
+  const current = myfinQuizQuestions[quizQuestionIndex];
+  const buttons = document.querySelectorAll('#quizAnswers button');
+
+  buttons.forEach(button => {
+    button.disabled = true;
+    button.style.opacity = '0.65';
+  });
+
+  if (answerIndex === current.correct) {
+    quizScore++;
+
+    document.getElementById('quizFeedback').textContent =
+      'Correct answer! Well done 🎉';
+  } else {
+    document.getElementById('quizFeedback').textContent =
+      'Not quite! The correct answer is: ' +
+      current.answers[current.correct];
+  }
+
+  const nextButton = document.getElementById('nextQuizButton');
+
+  nextButton.textContent =
+    quizQuestionIndex === myfinQuizQuestions.length - 1
+      ? 'Finish Quiz'
+      : 'Next Question';
+
+  nextButton.style.display = 'block';
+}
+
+function nextQuizQuestion() {
+  if (!quizAnswered) return;
+
+  if (quizQuestionIndex < myfinQuizQuestions.length - 1) {
+    quizQuestionIndex++;
+    quizAnswered = false;
+    renderQuiz();
+    return;
+  }
+
+  finishQuiz();
+}
+
+function finishQuiz() {
+  const data = getQuizData();
+
+  const reward = quizScore * 50;
+
+  data.credits += reward;
+  data.completed = true;
+
+  localStorage.setItem('myfinQuizData', JSON.stringify(data));
+
+  document.getElementById('quizContainer').style.display = 'none';
+  document.getElementById('quizResult').style.display = 'block';
+
+  document.getElementById('quizScore').textContent =
+    'You answered ' + quizScore + ' out of ' +
+    myfinQuizQuestions.length + ' questions correctly. ' +
+    'You earned ₦' + reward + ' demo credits!';
+
+  document.getElementById('quizCredits').textContent =
+    '₦' + data.credits.toLocaleString('en-NG') + '.00';
+}
+
+function restartQuiz() {
+  const data = getQuizData();
+
+  if (data.completed) {
+    alert('You have already claimed today’s quiz reward. Come back tomorrow!');
+    return;
+  }
+
+  quizQuestionIndex = 0;
+  quizScore = 0;
+  quizAnswered = false;
+
+  renderQuiz();
+}
+
 /* DAILY TASKS FEATURE */
 
 const dailyTaskList = [
