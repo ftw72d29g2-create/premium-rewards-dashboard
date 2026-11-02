@@ -5,12 +5,201 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MyFin | Smart Finance</title>
 
+
+
 <style>
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
+/* =================================
+   MYFIN EARNING DASHBOARD
+================================= */
+
+.dashboard {
+    display: none;
+    min-height: 100vh;
+    background: #080e1c;
+    color: #ffffff;
+    padding: 25px 6% 100px;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 35px;
+}
+
+.dashboard-brand {
+    font-size: 25px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #ffffff;
+}
+
+.dashboard-brand span {
+    color: #2785ff;
+}
+
+.dashboard-user {
+    width: 43px;
+    height: 43px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1672f5, #42baff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.dashboard-welcome {
+    margin-bottom: 25px;
+}
+
+.dashboard-welcome h2 {
+    font-size: 27px;
+    margin-bottom: 8px;
+}
+
+.dashboard-welcome p {
+    color: #91a5c5;
+    font-size: 14px;
+}
+
+.dashboard-balance {
+    background: linear-gradient(120deg, #1257c9, #167ef5, #102d67);
+    border: 1px solid rgba(112, 181, 255, .5);
+    border-radius: 22px;
+    padding: 28px;
+    margin-bottom: 25px;
+    box-shadow: 0 12px 40px rgba(22, 114, 245, .2),
+                inset 0 1px 1px rgba(255,255,255,.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.dashboard-balance::after {
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    right: -60px;
+    top: -70px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.12);
+    filter: blur(25px);
+}
+
+.balance-label {
+    color: #d8e9ff;
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.balance-amount {
+    font-size: 35px;
+    font-weight: 800;
+    margin-bottom: 22px;
+}
+
+.balance-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: #d8e9ff;
+}
+
+.dashboard-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: #101d35;
+    border: 1px solid #1d3558;
+    border-radius: 16px;
+    padding: 20px;
+}
+
+.stat-card p {
+    color: #91a5c5;
+    font-size: 13px;
+    margin-bottom: 12px;
+}
+
+    .stat-card h3 {
+        font-size: 18px;
+    }
+}
+</style>
+
+.dashboard-section-title {
+    font-size: 19px;
+    margin-bottom: 17px;
+}
+
+.dashboard-actions {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-bottom: 30px;
+}
+
+.dashboard-action {
+    background: #101d35;
+    border: 1px solid #1d3558;
+    border-radius: 15px;
+    padding: 20px 15px;
+    color: #ffffff;
+    text-align: left;
+}
+
+.dashboard-action strong {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 15px;
+}
+
+.dashboard-action span {
+    color: #91a5c5;
+    font-size: 12px;
+}
+
+.dashboard-action:hover {
+    border-color: #2785ff;
+    box-shadow: 0 0 18px rgba(39,133,255,.12);
+}
+
+@media (max-width: 600px) {
+    .dashboard {
+        padding: 22px 17px 100px;
+    }
+
+    .dashboard-balance {
+        padding: 23px 20px;
+    }
+
+    .balance-amount {
+        font-size: 29px;
+    }
+
+    .stat-card {
+        padding: 16px;
+    }
+
+    .stat-card h3 {
+        font-size: 18px;
+    }
+}
+
 
 body {
   font-family: Arial, sans-serif;
