@@ -778,7 +778,27 @@ const SUPABASE_PUBLISHABLE_KEY ='sb_publishable _UWEwhW_ZXeJMb…';
 const myfinSupabase = window.supabase.createClient(
     SUPABASE_URL,
     SUPABASE_PUBLISHABLE_KEY
+
 );
+async function testMyfinConnection() {
+    try {
+        const { data, error } = await myfinSupabase
+            .from('profiles')
+            .select('*')
+            .limit(1);
+
+        if (error) {
+            console.error('MYFIN database test:', error.message);
+            return;
+        }
+
+        console.log('MYFIN database connection successful!');
+    } catch (err) {
+        console.error('MYFIN connection failed:', err);
+    }
+}
+
+testMyfinConnection();
 
 console.log('MYFIN Supabase connection initialized!');
 console.log('Supabase library:', typeof window.supabase);
