@@ -200,6 +200,62 @@
     }
 }
 
+/* EARNING OPPORTUNITIES */
+
+.earning-section {
+    margin-top: 32px;
+    margin-bottom: 30px;
+}
+
+.earning-section > p {
+    color: #91a5c5;
+    font-size: 13px;
+    margin-top: -8px;
+    margin-bottom: 18px;
+}
+
+.earning-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+}
+
+.earning-card {
+    background: linear-gradient(145deg, #122441, #0d192d);
+    border: 1px solid #23436c;
+    border-radius: 16px;
+    padding: 19px 15px;
+}
+
+.earning-icon {
+    font-size: 25px;
+    margin-bottom: 14px;
+}
+
+.earning-card h4 {
+    font-size: 15px;
+    margin-bottom: 8px;
+}
+
+.earning-card p {
+    color: #91a5c5;
+    font-size: 12px;
+    line-height: 1.5;
+    margin-bottom: 14px;
+}
+
+.earning-reward {
+    color: #55b6ff;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+@media (max-width: 380px) {
+    .earning-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 
 body {
   font-family: Arial, sans-serif;
@@ -557,6 +613,85 @@ footer {
 </footer>
 
 /* LOGIN SCREEN DESIGN */
+ 
+
+<!-- MYFIN EARNING DASHBOARD -->
+<section class="dashboard" id="dashboard">
+
+    <header class="dashboard-header">
+        <div class="dashboard-brand">MY<span>FIN</span></div>
+        <div class="dashboard-user">U</div>
+    </header>
+
+    <div class="dashboard-welcome">
+        <h2>Welcome back, User 👋</h2>
+        <p>Here's an overview of your earning activity.</p>
+    </div>
+
+    <div class="dashboard-balance">
+        <div class="balance-label">AVAILABLE BALANCE</div>
+        <div class="balance-amount">₦0.00</div>
+        <div class="balance-footer">
+            <span>My Wallet</span>
+            <span>Account Active</span>
+        </div>
+    </div>
+
+    <h3 class="dashboard-section-title">Earnings Overview</h3>
+
+    <div class="dashboard-stats">
+
+        <div class="stat-card">
+            <p>Total Earnings</p>
+            <h3>₦0.00</h3>
+        </div>
+
+        <div class="stat-card">
+            <p>Today's Earnings</p>
+            <h3>₦0.00</h3>
+        </div>
+
+        <div class="stat-card">
+            <p>Pending Rewards</p>
+            <h3>₦0.00</h3>
+        </div>
+
+        <div class="stat-card">
+            <p>Lifetime Rewards</p>
+            <h3>₦0.00</h3>
+        </div>
+
+    </div>
+
+    <h3 class="dashboard-section-title">Quick Actions</h3>
+
+    <div class="dashboard-actions">
+
+        <div class="dashboard-action">
+            <strong>＋ Deposit Money</strong>
+            <span>Add funds to your wallet</span>
+        </div>
+
+        <div class="dashboard-action">
+            <strong>↗ Withdraw</strong>
+            <span>Request a withdrawal</span>
+        </div>
+
+        <div class="dashboard-action">
+            <strong>🎁 Earn Rewards</strong>
+            <span>Explore earning opportunities</span>
+        </div>
+
+        <div class="dashboard-action">
+            <strong>👥 Referrals</strong>
+            <span>Invite friends and earn</span>
+        </div>
+
+    </div>
+
+</section>
+<!-- END MYFIN EARNING DASHBOARD -->
+
 
 <!-- LOGIN SCREEN -->
 <section id="login">
