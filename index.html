@@ -760,10 +760,39 @@ function showDashboard() {
   dashboard.classList.remove('hidden');
 }
 
-document.getElementById('loginForm').addEventListener('submit', function(event) {
+
+document.getElementById('loginForm').addEventListener('submit', async function(event) {
   event.preventDefault();
-  showDashboard();
+
+  const email = document.getElementById('loginEmail').value.trim();
+  const password = document.getElementById('loginPassword').value;
+
+  const button = this.querySelector('button[type="submit"]');
+
+  button.disabled = true;
+  button.textContent = 'Signing in...';
+
+  try {
+    const { data, error } = await myfinSupabase.auth.signInWithPassword({
+      email: email,
+      password: password
+    });
+
+    if (error) {
+      throw error;
+    }
+
+    showDashboard();
+
+  } catch (error) {
+    alert('Sign in failed: ' + error.message);
+
+  } finally {
+    button.disabled = false;
+    button.textContent = 'Sign In';
+  }
 });
+
 
 function demoNotice(feature) {
   alert(feature + ' is part of the MYFIN demo. This feature is not connected yet.');
