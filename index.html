@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,7 +35,6 @@ font-size:25px;
 font-weight:800;
 letter-spacing:1px;
 }
-
 .brand span{color:var(--cyan)}
 
 .primary-btn{
@@ -44,6 +44,11 @@ color:#fff;
 padding:13px 22px;
 border-radius:10px;
 font-weight:bold;
+}
+
+.primary-btn:disabled{
+opacity:.65;
+cursor:not-allowed;
 }
 
 .secondary-btn{
@@ -220,6 +225,13 @@ color:var(--cyan);
 cursor:pointer;
 }
 
+.login-message{
+font-size:13px;
+line-height:1.5;
+margin-top:15px;
+color:#ff9c9c;
+}
+
 /* DASHBOARD */
 
 #dashboard{
@@ -278,7 +290,7 @@ border:1px solid #398edb;
 border-radius:20px;
 padding:27px;
 margin-bottom:28px;
-box-shadow:0 12px 40px #0879df25;
+box-shadow:0 12px 40px #0879df25,0 0 30px #258cff20;
 }
 
 .balance-card:after{
@@ -444,11 +456,15 @@ line-height:1.6;
 .stat-card h3{font-size:17px}
 }
 </style>
+
+<!-- Supabase JavaScript library -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
+
 <body>
 
 <!-- LANDING PAGE -->
+
 <div id="landing">
 
 <header>
@@ -487,28 +503,19 @@ line-height:1.6;
   <article class="feature">
     <div class="icon">💳</div>
     <h3>Digital Wallet</h3>
-    <p>
-      View your demo wallet balance and explore
-      a clear overview of your account activity.
-    </p>
+    <p>View your demo wallet balance and explore a clear overview of your account activity.</p>
   </article>
 
   <article class="feature">
     <div class="icon">🎁</div>
     <h3>Rewards & Tasks</h3>
-    <p>
-      Discover the rewards area and see how
-      earning opportunities can be organized.
-    </p>
+    <p>Discover the rewards area and see how earning opportunities can be organized.</p>
   </article>
 
   <article class="feature">
     <div class="icon">📈</div>
     <h3>Track Progress</h3>
-    <p>
-      Keep an eye on earnings, activity and your
-      financial goals from one dashboard.
-    </p>
+    <p>Keep an eye on earnings, activity and your financial goals from one dashboard.</p>
   </article>
 
 </section>
@@ -518,7 +525,6 @@ line-height:1.6;
 </footer>
 
 </div>
-
 
 <!-- LOGIN SCREEN -->
 
@@ -530,36 +536,38 @@ line-height:1.6;
 
     <h2>Welcome Back</h2>
 
-    <p>Sign in to continue to your demo dashboard.</p>
+    <p>Sign in with your MYFIN account to continue.</p>
 
     <form id="loginForm">
 
       <label for="loginEmail">Email Address</label>
-
       <input
         type="email"
         id="loginEmail"
         placeholder="Enter your email"
+        autocomplete="email"
         required
       >
 
       <label for="loginPassword">Password</label>
-
       <input
         type="password"
         id="loginPassword"
         placeholder="Enter your password"
+        autocomplete="current-password"
         required
       >
 
-      <button class="primary-btn" type="submit">
+      <button class="primary-btn" id="loginButton" type="submit">
         Sign In
       </button>
+
+      <div id="loginMessage" class="login-message" role="alert"></div>
 
     </form>
 
     <p class="login-bottom">
-      Demo only — any valid email and password will open the dashboard.
+      Sign in with an account registered in MYFIN.
       <a onclick="showLanding()">Go back</a>
     </p>
 
@@ -567,50 +575,39 @@ line-height:1.6;
 
 </section>
 
-
 <!-- DASHBOARD -->
 
 <section id="dashboard" class="hidden">
 
   <header class="dashboard-header">
-
     <div class="brand">MY<span>FIN</span></div>
-
-    <div class="user-circle">U</div>
-
+    <div class="user-circle" id="userInitial">U</div>
   </header>
 
   <main class="dashboard-main">
 
     <div class="welcome-row">
-
       <div>
-        <h2>Welcome back, User 👋</h2>
+        <h2 id="welcomeName">Welcome back, User 👋</h2>
         <p>Here's an overview of your earning activity.</p>
       </div>
 
-      <button class="secondary-btn" onclick="showLanding()">
+      <button class="secondary-btn" id="logoutButton" onclick="logoutUser()">
         Log out
       </button>
-
     </div>
-
 
     <!-- BALANCE CARD -->
 
     <div class="balance-card">
-
       <div class="balance-label">AVAILABLE BALANCE</div>
-
       <div class="balance-amount">₦0.00</div>
 
       <div class="balance-footer">
         <span>My Wallet</span>
         <span>● Demo Account</span>
       </div>
-
     </div>
-
 
     <!-- EARNINGS OVERVIEW -->
 
@@ -639,7 +636,6 @@ line-height:1.6;
       </div>
 
     </div>
-
 
     <!-- QUICK ACTIONS -->
 
@@ -672,7 +668,6 @@ line-height:1.6;
       </button>
 
     </div>
-
 
     <!-- EARNING OPPORTUNITIES -->
 
@@ -713,9 +708,7 @@ line-height:1.6;
         </div>
 
       </div>
-
     </div>
-
 
     <!-- RECENT ACTIVITY -->
 
@@ -726,7 +719,6 @@ line-height:1.6;
       Your demo activity will appear here as features are developed.
     </div>
 
-
     <p class="notice">
       DEMO NOTICE: This is a front-end demonstration only.
       Balances and rewards are illustrative. Deposits and
@@ -735,9 +727,49 @@ line-height:1.6;
     </p>
 
   </main>
-
 </section>
+
+<!-- MYFIN JAVASCRIPT -->
+
 <script>
+/* SUPABASE CONNECTION */
+
+const SUPABASE_URL = 'https://shkfxrmvttqlczookpnb.supabase.co';
+
+/*
+  IMPORTANT:
+  Replace the text below with your EXISTING full Supabase
+  publishable key. Do not use a secret/service-role key.
+*/
+const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable _UWEwhW_ZXeJMb…;
+
+let myfinSupabase = null;
+
+try {
+  if (!window.supabase) {
+    throw new Error('Supabase library did not load.');
+  }
+
+  if (
+    SUPABASE_PUBLISHABLE_KEY === 'YOUR_EXISTING_FULL_PUBLISHABLE_KEY' ||
+    !SUPABASE_PUBLISHABLE_KEY.trim()
+  ) {
+    throw new Error('Add your Supabase publishable key in the code.');
+  }
+
+  myfinSupabase = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+  );
+
+  console.log('MYFIN Supabase client initialized.');
+
+} catch (error) {
+  console.error('MYFIN Supabase setup:', error.message);
+}
+
+/* PAGE NAVIGATION */
+
 const landing = document.getElementById('landing');
 const login = document.getElementById('login');
 const dashboard = document.getElementById('dashboard');
@@ -746,28 +778,71 @@ function showLanding() {
   landing.classList.remove('hidden');
   login.classList.add('hidden');
   dashboard.classList.add('hidden');
+  window.scrollTo(0, 0);
 }
 
 function showLogin() {
   landing.classList.add('hidden');
   login.classList.remove('hidden');
   dashboard.classList.add('hidden');
+
+  document.getElementById('loginMessage').textContent = '';
+  window.scrollTo(0, 0);
 }
 
 function showDashboard() {
   landing.classList.add('hidden');
   login.classList.add('hidden');
   dashboard.classList.remove('hidden');
+  window.scrollTo(0, 0);
 }
 
+/* DISPLAY USER PROFILE */
+
+async function loadUserProfile(user) {
+  const welcomeName = document.getElementById('welcomeName');
+  const userInitial = document.getElementById('userInitial');
+
+  let displayName = user.email ? user.email.split('@')[0] : 'User';
+
+  if (myfinSupabase) {
+    try {
+      const { data, error } = await myfinSupabase
+        .from('profiles')
+        .select('full_name, username')
+        .eq('id', user.id)
+        .maybeSingle();
+
+      if (error) {
+        console.warn('Profile lookup:', error.message);
+      } else if (data) {
+        displayName = data.full_name || data.username || displayName;
+      }
+    } catch (error) {
+      console.warn('Could not load profile:', error.message);
+    }
+  }
+
+  welcomeName.textContent = 'Welcome back, ' + displayName + ' 👋';
+  userInitial.textContent = displayName.charAt(0).toUpperCase();
+}
+
+/* SUPABASE SIGN IN */
 
 document.getElementById('loginForm').addEventListener('submit', async function(event) {
   event.preventDefault();
 
   const email = document.getElementById('loginEmail').value.trim();
   const password = document.getElementById('loginPassword').value;
+  const button = document.getElementById('loginButton');
+  const message = document.getElementById('loginMessage');
 
-  const button = this.querySelector('button[type="submit"]');
+  message.textContent = '';
+
+  if (!myfinSupabase) {
+    message.textContent = 'Supabase is not configured. Check your publishable key and connection.';
+    return;
+  }
 
   button.disabled = true;
   button.textContent = 'Signing in...';
@@ -782,10 +857,15 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
       throw error;
     }
 
+    if (!data.user) {
+      throw new Error('No user account was returned.');
+    }
+
+    await loadUserProfile(data.user);
     showDashboard();
 
   } catch (error) {
-    alert('Sign in failed: ' + error.message);
+    message.textContent = 'Sign in failed: ' + error.message;
 
   } finally {
     button.disabled = false;
@@ -793,48 +873,76 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
   }
 });
 
+/* LOG OUT */
+
+async function logoutUser() {
+  const button = document.getElementById('logoutButton');
+
+  if (!myfinSupabase) {
+    showLanding();
+    return;
+  }
+
+  button.disabled = true;
+  button.textContent = 'Logging out...';
+
+  try {
+    const { error } = await myfinSupabase.auth.signOut();
+
+    if (error) {
+      throw error;
+    }
+
+    document.getElementById('loginPassword').value = '';
+    showLanding();
+
+  } catch (error) {
+    alert('Logout failed: ' + error.message);
+
+  } finally {
+    button.disabled = false;
+    button.textContent = 'Log out';
+  }
+}
+
+/* DEMO ACTIONS */
 
 function demoNotice(feature) {
-  alert(feature + ' is part of the MYFIN demo. This feature is not connected yet.');
+  alert(
+    feature +
+    ' is part of the MYFIN demo. This feature is not connected yet.'
+  );
 }
-<script>
 
-// MYFIN SUPABASE CONNECTION
-const SUPABASE_URL = 'https://shkfxrmvttqlczookpnb.supabase.co';
+/* RESTORE AN EXISTING LOGIN SESSION */
 
-const SUPABASE_PUBLISHABLE_KEY ='sb_publishable _UWEwhW_ZXeJMb…';
+async function checkExistingSession() {
+  if (!myfinSupabase) {
+    return;
+  }
 
-const myfinSupabase = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_PUBLISHABLE_KEY
+  try {
+    const { data, error } = await myfinSupabase.auth.getSession();
 
-);
-async function testMyfinConnection() {
-    try {
-        const { data, error } = await myfinSupabase
-            .from('profiles')
-            .select('*')
-            .limit(1);
-
-        if (error) {
-            console.error('MYFIN database test:', error.message);
-            return;
-        }
-
-        console.log('MYFIN database connection successful!');
-    } catch (err) {
-        console.error('MYFIN connection failed:', err);
+    if (error) {
+      console.warn('Session check:', error.message);
+      return;
     }
+
+    if (data.session && data.session.user) {
+      await loadUserProfile(data.session.user);
+      showDashboard();
+    }
+
+  } catch (error) {
+    console.error('Session check failed:', error.message);
+  }
 }
 
-testMyfinConnection();
-
-console.log('MYFIN Supabase connection initialized!');
-console.log('Supabase library:', typeof window.supabase);
-console.log('MYFIN client:', typeof myfinSupabase);
-
-// Your existing MYFIN functions go here
+checkExistingSession();
 
 </script>
+
 </body>
 </html>
+
