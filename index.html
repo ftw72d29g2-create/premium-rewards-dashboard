@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MyFin | Smart Finance</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #080e1c;
+  color: white;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 8%;
+  border-bottom: 1px solid #1c2940;
+}
+
+.logo {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.logo span {
+  color: #398bff;
+}
+
+nav a {
+  color: #bdc9dc;
+  text-decoration: none;
+  margin-left: 20px;
+}
+
+.hero {
+  max-width: 1150px;
+  margin: auto;
+  padding: 100px 8%;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  align-items: center;
+  gap: 40px;
+}
+
+.tag {
+  display: inline-block;
+  padding: 10px 15px;
+  border: 1px solid #28548c;
+  background: #102747;
+  color: #75b5ff;
+  border-radius: 30px;
+  font-size: 12px;
+  margin-bottom: 25px;
+}
+
+h1 {
+  font-size: clamp(42px, 6vw, 68px);
+  line-height: 1.1;
+  margin-bottom: 22px;
+}
+
+h1 span {
+  color: #4295ff;
+}
+
+.hero p {
+  color: #aab7ce;
+  line-height: 1.8;
+  margin-bottom: 30px;
+}
+
+.buttons {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-block;
+  padding: 15px 25px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.primary {
+  color: white;
+  background: linear-gradient(135deg,#398bff,#1760d6);
+  box-shadow: 0 8px 30px #1760d644;
+}
+
+.secondary {
+  color: white;
+  border: 1px solid #34445e;
+  background: #121c2e;
+}
+
+.preview {
+  background: linear-gradient(145deg,#172844,#0d1729);
+  border: 1px solid #31517b;
+  border-radius: 22px;
+  padding: 28px;
+  box-shadow: 0 0 55px #237fff30;
+}
+
+.preview small {
+  color: #91a6c5;
+}
+
+.preview h2 {
+  font-size: 34px;
+  margin: 15px 0;
+}
+
+.preview .amount {
+  color: #58a4ff;
+  font-size: 13px;
+}
+
+.preview-card {
+  margin-top: 25px;
+  padding: 18px;
+  background: #111f35;
+  border-radius: 14px;
+  border: 1px solid #263c5c;
+}
+
+.preview-card strong {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.preview-card span {
+  color: #8fa5c5;
+  font-size: 13px;
+}
+
+.features {
+  padding: 35px 8% 90px;
+  text-align: center;
+}
+
+.features h2 {
+  font-size: 30px;
+  margin-bottom: 12px;
+}
+
+.features > p {
+  color: #91a1bb;
+  margin-bottom: 35px;
+}
+
+.feature-grid {
+  max-width: 1050px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 20px;
+  text-align: left;
+}
+
+.feature {
+  padding: 25px;
+  border: 1px solid #24344e;
+  background: #101a2b;
+  border-radius: 16px;
+}
+
+.feature h3 {
+  margin: 15px 0 10px;
+}
+
+.feature p {
+  color: #9baac1;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.feature-icon {
+  font-size: 27px;
+}
+
+footer {
+  padding: 25px;
+  text-align: center;
+  color: #71819c;
+  border-top: 1px solid #1c2940;
+  font-size: 13px;
+}
+
+@media(max-width:750px) {
+  header {
+    padding: 20px 6%;
+  }
+
+  nav a {
+    margin-left: 10px;
+    font-size: 12px;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 65px 7%;
+  }
+
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">MY<span>FIN.</span></div>
+  <nav>
+    <a href="#features">Features</a>
+    <a href="#login">Login</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div>
+    <div class="tag">✦ A smarter financial experience</div>
+
+    <h1>Make your money work <span>smarter.</span></h1>
+
+    <p>
+      A modern platform for managing your savings,
+      tracking your progress and building better
+      financial habits, one step at a time.
+    </p>
+
+    <div class="buttons">
+      <a href="#register" class="btn primary">Get Started →</a>
+      <a href="#login" class="btn secondary">Login</a>
+    </div>
+  </div>
+
+  <div class="preview">
+    <small>YOUR FINANCIAL OVERVIEW</small>
+    <h2>₦ 250,000.00</h2>
+    <div class="amount">Demo balance · Preview only</div>
+
+    <div class="preview-card">
+      <strong>💰 Smart Savings</strong>
+      <span>Build your savings goals</span>
+    </div>
+
+    <div class="preview-card">
+      <strong>📈 Track Your Progress</strong>
+      <span>Keep an eye on your financial journey</span>
+    </div>
+  </div>
+</section>
+
+<section class="features" id="features">
+  <h2>Everything in one place</h2>
+  <p>Simple tools for a smarter financial journey.</p>
+
+  <div class="feature-grid">
+    <div class="feature">
+      <div class="feature-icon">💳</div>
+      <h3>Digital Wallet</h3>
+      <p>View your wallet and manage your account activity.</p>
+    </div>
+
+    <div class="feature">
+      <div class="feature-icon">🎯</div>
+      <h3>Smart Savings</h3>
+      <p>Set goals and monitor your savings progress.</p>
+    </div>
+
+    <div class="feature">
+      <div class="feature-icon">🏆</div>
+      <h3>Rewards</h3>
+      <p>Explore activities and rewards as you use the platform.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  MYFIN — Your financial journey starts here.
+</footer>
+
+</body>
+</html>
