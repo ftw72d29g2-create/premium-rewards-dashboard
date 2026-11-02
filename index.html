@@ -444,6 +444,7 @@ line-height:1.6;
 .stat-card h3{font-size:17px}
 }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
@@ -767,7 +768,26 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
 function demoNotice(feature) {
   alert(feature + ' is part of the MYFIN demo. This feature is not connected yet.');
 }
-</script>
+<script>
 
+// MYFIN SUPABASE CONNECTION
+const SUPABASE_URL = 'https://shkfxrmvttqlczookpnb.supabase.co';
+
+const SUPABASE_PUBLISHABLE_KEY ='sb_publishable _UWEwhW_ZXeJMb…';
+
+const myfinSupabase = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+);
+
+console.log('MYFIN Supabase connection initialized!');
+
+// Your existing MYFIN functions go here
+
+</script>
+</body>
+</html>
+
+console.log('MYFIN Supabase connection initialized!');
 </body>
 </html>
