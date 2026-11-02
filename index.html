@@ -445,3 +445,329 @@ line-height:1.6;
 }
 </style>
 </head>
+<body>
+
+<!-- LANDING PAGE -->
+<div id="landing">
+
+<header>
+  <div class="brand">MY<span>FIN</span></div>
+
+  <nav class="header-links">
+    <a href="#features">Features</a>
+    <a href="#about">About</a>
+    <a class="login-link" href="#" onclick="showLogin();return false">Sign In</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-tag">YOUR FINANCIAL JOURNEY STARTS HERE</div>
+
+  <h1>A smarter way to <span>earn, save</span> and grow.</h1>
+
+  <p>
+    Explore a modern rewards and finance experience.
+    Track your activity, discover earning opportunities
+    and keep your goals moving forward.
+  </p>
+
+  <div class="hero-buttons">
+    <button class="primary-btn" onclick="showLogin()">Get Started</button>
+
+    <button class="secondary-btn"
+      onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})">
+      Explore Features
+    </button>
+  </div>
+</section>
+
+<section class="landing-features" id="features">
+
+  <article class="feature">
+    <div class="icon">💳</div>
+    <h3>Digital Wallet</h3>
+    <p>
+      View your demo wallet balance and explore
+      a clear overview of your account activity.
+    </p>
+  </article>
+
+  <article class="feature">
+    <div class="icon">🎁</div>
+    <h3>Rewards & Tasks</h3>
+    <p>
+      Discover the rewards area and see how
+      earning opportunities can be organized.
+    </p>
+  </article>
+
+  <article class="feature">
+    <div class="icon">📈</div>
+    <h3>Track Progress</h3>
+    <p>
+      Keep an eye on earnings, activity and your
+      financial goals from one dashboard.
+    </p>
+  </article>
+
+</section>
+
+<footer id="about">
+  MYFIN demo experience · Built as a learning project
+</footer>
+
+</div>
+
+
+<!-- LOGIN SCREEN -->
+
+<section id="login" class="hidden">
+
+  <div class="login-container">
+
+    <div class="brand">MY<span>FIN</span></div>
+
+    <h2>Welcome Back</h2>
+
+    <p>Sign in to continue to your demo dashboard.</p>
+
+    <form id="loginForm">
+
+      <label for="loginEmail">Email Address</label>
+
+      <input
+        type="email"
+        id="loginEmail"
+        placeholder="Enter your email"
+        required
+      >
+
+      <label for="loginPassword">Password</label>
+
+      <input
+        type="password"
+        id="loginPassword"
+        placeholder="Enter your password"
+        required
+      >
+
+      <button class="primary-btn" type="submit">
+        Sign In
+      </button>
+
+    </form>
+
+    <p class="login-bottom">
+      Demo only — any valid email and password will open the dashboard.
+      <a onclick="showLanding()">Go back</a>
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- DASHBOARD -->
+
+<section id="dashboard" class="hidden">
+
+  <header class="dashboard-header">
+
+    <div class="brand">MY<span>FIN</span></div>
+
+    <div class="user-circle">U</div>
+
+  </header>
+
+  <main class="dashboard-main">
+
+    <div class="welcome-row">
+
+      <div>
+        <h2>Welcome back, User 👋</h2>
+        <p>Here's an overview of your earning activity.</p>
+      </div>
+
+      <button class="secondary-btn" onclick="showLanding()">
+        Log out
+      </button>
+
+    </div>
+
+
+    <!-- BALANCE CARD -->
+
+    <div class="balance-card">
+
+      <div class="balance-label">AVAILABLE BALANCE</div>
+
+      <div class="balance-amount">₦0.00</div>
+
+      <div class="balance-footer">
+        <span>My Wallet</span>
+        <span>● Demo Account</span>
+      </div>
+
+    </div>
+
+
+    <!-- EARNINGS OVERVIEW -->
+
+    <h3 class="section-title">Earnings Overview</h3>
+
+    <div class="stats-grid">
+
+      <div class="stat-card">
+        <p>Total Earnings</p>
+        <h3>₦0.00</h3>
+      </div>
+
+      <div class="stat-card">
+        <p>Today's Earnings</p>
+        <h3>₦0.00</h3>
+      </div>
+
+      <div class="stat-card">
+        <p>Pending Rewards</p>
+        <h3>₦0.00</h3>
+      </div>
+
+      <div class="stat-card">
+        <p>Lifetime Rewards</p>
+        <h3>₦0.00</h3>
+      </div>
+
+    </div>
+
+
+    <!-- QUICK ACTIONS -->
+
+    <h3 class="section-title">Quick Actions</h3>
+
+    <div class="actions-grid">
+
+      <button class="action-card" onclick="demoNotice('Deposit')">
+        <div class="action-icon">＋</div>
+        <strong>Deposit Money</strong>
+        <span>Add funds to your wallet</span>
+      </button>
+
+      <button class="action-card" onclick="demoNotice('Withdraw')">
+        <div class="action-icon">↗</div>
+        <strong>Withdraw</strong>
+        <span>Request a withdrawal</span>
+      </button>
+
+      <button class="action-card" onclick="demoNotice('Rewards')">
+        <div class="action-icon">🎁</div>
+        <strong>Earn Rewards</strong>
+        <span>Explore earning opportunities</span>
+      </button>
+
+      <button class="action-card" onclick="demoNotice('Referrals')">
+        <div class="action-icon">👥</div>
+        <strong>Referrals</strong>
+        <span>Invite friends and earn</span>
+      </button>
+
+    </div>
+
+
+    <!-- EARNING OPPORTUNITIES -->
+
+    <div class="earning-section">
+
+      <h3 class="section-title">Earning Opportunities</h3>
+
+      <p>Explore different ways to engage with MYFIN.</p>
+
+      <div class="earning-grid">
+
+        <div class="earning-card">
+          <div class="earning-icon">✅</div>
+          <h4>Daily Tasks</h4>
+          <p>Complete simple activities and track your progress.</p>
+          <div class="earning-reward">Coming soon</div>
+        </div>
+
+        <div class="earning-card">
+          <div class="earning-icon">🧠</div>
+          <h4>Quick Quiz</h4>
+          <p>Test your knowledge with short interactive quizzes.</p>
+          <div class="earning-reward">Coming soon</div>
+        </div>
+
+        <div class="earning-card">
+          <div class="earning-icon">🎡</div>
+          <h4>Daily Spin</h4>
+          <p>A game-style daily reward experience.</p>
+          <div class="earning-reward">Coming soon</div>
+        </div>
+
+        <div class="earning-card">
+          <div class="earning-icon">🤝</div>
+          <h4>Referral Bonus</h4>
+          <p>Explore a referral system for inviting new members.</p>
+          <div class="earning-reward">Coming soon</div>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- RECENT ACTIVITY -->
+
+    <h3 class="section-title">Recent Activity</h3>
+
+    <div class="activity-card">
+      No activity yet.<br>
+      Your demo activity will appear here as features are developed.
+    </div>
+
+
+    <p class="notice">
+      DEMO NOTICE: This is a front-end demonstration only.
+      Balances and rewards are illustrative. Deposits and
+      withdrawals do not move real money, and no payment
+      provider or banking service is connected.
+    </p>
+
+  </main>
+
+</section>
+<script>
+const landing = document.getElementById('landing');
+const login = document.getElementById('login');
+const dashboard = document.getElementById('dashboard');
+
+function showLanding() {
+  landing.classList.remove('hidden');
+  login.classList.add('hidden');
+  dashboard.classList.add('hidden');
+}
+
+function showLogin() {
+  landing.classList.add('hidden');
+  login.classList.remove('hidden');
+  dashboard.classList.add('hidden');
+}
+
+function showDashboard() {
+  landing.classList.add('hidden');
+  login.classList.add('hidden');
+  dashboard.classList.remove('hidden');
+}
+
+document.getElementById('loginForm').addEventListener('submit', function(event) {
+  event.preventDefault();
+  showDashboard();
+});
+
+function demoNotice(feature) {
+  alert(feature + ' is part of the MYFIN demo. This feature is not connected yet.');
+}
+</script>
+
+</body>
+</html>
