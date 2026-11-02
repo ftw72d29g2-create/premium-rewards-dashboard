@@ -196,7 +196,13 @@ footer {
   border-top: 1px solid #1c2940;
   font-size: 13px;
 }
-
+  header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 8%;
+  border-bottom: 1px solid #1c2940;
+}
 @media(max-width:750px) {
   header {
     padding: 20px 6%;
@@ -292,6 +298,30 @@ footer {
 <footer>
   MYFIN — Your financial journey starts here.
 </footer>
+
+/* LOGIN SCREEN DESIGN */
+
+<!-- LOGIN SCREEN -->
+<section id="login">
+  <div class="login-container">
+    <h2>Welcome Back</h2>
+    <p>Sign in to continue to your account.</p>
+
+    <form id="loginForm">
+      <label for="loginEmail">Email Address</label>
+      <input type="email" id="loginEmail"
+        placeholder="Enter your email" required>
+
+      <label for="loginPassword">Password</label>
+      <input type="password" id="loginPassword"
+        placeholder="Enter your password" required>
+
+      <button type="submit">Sign In</button>
+    </form>
+
+    <p>Don't have an account? Register</p>
+  </div>
+</section>
 
 </body>
 </html>
