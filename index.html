@@ -557,6 +557,12 @@ line-height:1.6;
         autocomplete="current-password"
         required
       >
+      <p style="text-align:right;margin-top:12px;font-size:13px">
+  <a href="#" onclick="resetMyfinPassword();return false"
+     style="color:#55b6ff;text-decoration:none">
+    Forgot Password?
+  </a>
+</p>
 
       <button class="primary-btn" id="loginButton" type="submit">
         Sign In
@@ -1402,10 +1408,40 @@ async function checkExistingSession() {
   }
 }
 
+async function resetMyfinPassword() {
+  const email = document.getElementById('loginEmail').value.trim();
+  const message = document.getElementById('loginMessage');
+
+  if (!myfinSupabase) {
+    message.textContent = 'Supabase is not configured. Please check the connection.';
+    return;
+  }
+
+  if (!email) {
+    message.textContent = 'Enter your email address first, then tap Forgot Password.';
+    document.getElementById('loginEmail').focus();
+    return;
+  }
+
+  try {
+    const { error } = await myfinSupabase.auth.resetPasswordForEmail(email, {
+      redirectTo: window.location.origin + window.location.pathname
+    });
+
+    if (error) throw error;
+
+    message.style.color = '#55b6ff';
+    message.textContent = 'If an account exists for this email, a password reset link has been sent. Check your inbox.';
+
+  } catch (error) {
+    message.style.color = '#ff9c9c';
+    message.textContent = 'Password reset failed: ' + error.message;
+  }
+}
+
 checkExistingSession();
 
 </script>
-
 </body>
 </html>
 
