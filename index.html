@@ -588,15 +588,21 @@ line-height:1.6;
     and keep your goals moving forward.
   </p>
 
-  <div class="hero-buttons">
-    <button class="primary-btn" onclick="showLogin()">Get Started</button>
+<div class="hero-buttons">
+  <button class="primary-btn" onclick="showLogin()">
+    Get Started
+  </button>
 
-    <button class="secondary-btn"
-      onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})">
-      Explore Features
-    </button>
-  </div>
-</section>
+  <button class="secondary-btn"
+    onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})">
+    Explore Features
+  </button>
+
+  <button class="secondary-btn"
+    onclick="previewMyfinDashboard()">
+    👁 Preview Dashboard
+  </button>
+</div>
 
 <section class="landing-features" id="features">
 
@@ -1105,6 +1111,15 @@ function showLogin() {
   dashboard.classList.add('hidden');
 
   document.getElementById('loginMessage').textContent = '';
+  window.scrollTo(0, 0);
+}
+
+function previewMyfinDashboard() {
+  landing.classList.add('hidden');
+  login.classList.add('hidden');
+  dashboard.classList.remove('hidden');
+
+  renderWallet();
   window.scrollTo(0, 0);
 }
 
