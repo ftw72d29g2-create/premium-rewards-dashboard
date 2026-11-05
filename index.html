@@ -542,6 +542,120 @@ line-height:1.6;
   color: #ff7585;
 }
 
+
+/* MYFIN WALLET MODAL DESIGN */
+
+.wallet-modal{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  background:rgba(2,8,20,.82);
+  backdrop-filter:blur(9px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.wallet-modal-content{
+  position:relative;
+  width:100%;
+  max-width:420px;
+  background:linear-gradient(145deg,#142541,#0a1426);
+  border:1px solid #28517c;
+  border-radius:22px;
+  padding:28px 22px;
+  box-shadow:0 20px 70px #0009,0 0 30px #258cff20;
+}
+
+.wallet-close{
+  position:absolute;
+  top:13px;
+  right:17px;
+  background:transparent;
+  border:0;
+  color:#91a5c5;
+  font-size:30px;
+}
+
+.wallet-modal-content h2{
+  font-size:23px;
+  margin:12px 0 9px;
+}
+
+.wallet-modal-content>p{
+  color:#91a5c5;
+  font-size:13px;
+  line-height:1.6;
+}
+
+.wallet-input-group{
+  margin-top:25px;
+}
+
+.wallet-input-group label{
+  display:block;
+  font-size:13px;
+  margin-bottom:10px;
+}
+
+.wallet-input-wrap{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  background:#091426;
+  border:1px solid #29466b;
+  border-radius:12px;
+  padding:0 15px;
+}
+
+.wallet-input-wrap span{
+  color:#55b6ff;
+  font-size:21px;
+  font-weight:bold;
+}
+
+.wallet-input-wrap input{
+  width:100%;
+  padding:16px 0;
+  background:transparent;
+  border:0;
+  outline:none;
+  color:white;
+  font-size:21px;
+}
+
+.wallet-available{
+  margin-top:14px;
+}
+
+.wallet-available strong{
+  color:#55b6ff;
+}
+
+.wallet-modal-message{
+  color:#ff9c9c;
+  font-size:13px;
+  margin-top:15px;
+  line-height:1.5;
+}
+
+#walletConfirmButton{
+  width:100%;
+  margin-top:22px;
+}
+
+.wallet-cancel{
+  width:100%;
+  margin-top:10px;
+}
+
+.wallet-modal-content .notice{
+  text-align:center;
+  margin-top:18px;
+}
+
+
 @media(max-width:700px){
 .landing-features{grid-template-columns:1fr}
 .stats-grid{grid-template-columns:repeat(2,1fr)}
@@ -719,7 +833,7 @@ line-height:1.6;
         <span>My Wallet</span>
         <span>● Demo Account</span>
       </div>
-    </div>
+    
 
     </div>
 
@@ -769,6 +883,61 @@ line-height:1.6;
   </div>
 
 </div>
+
+
+<!-- MYFIN WALLET TRANSACTION MODAL -->
+<div id="walletModal" class="wallet-modal hidden">
+  <div class="wallet-modal-content">
+
+    <button class="wallet-close" onclick="closeWalletForm()">×</button>
+
+    <div class="earning-icon" id="walletModalIcon">💳</div>
+
+    <h2 id="walletModalTitle">Deposit Money</h2>
+
+    <p id="walletModalDescription">
+      Enter the amount you want to add to your demo wallet.
+    </p>
+
+    <div class="wallet-input-group">
+      <label for="walletAmount">Amount (NGN)</label>
+      <div class="wallet-input-wrap">
+        <span>₦</span>
+        <input
+          type="number"
+          id="walletAmount"
+          placeholder="0.00"
+          min="1"
+          step="0.01"
+        >
+      </div>
+    </div>
+
+    <p class="wallet-available">
+      Available balance: <strong id="walletAvailable">₦0.00</strong>
+    </p>
+
+    <div id="walletModalMessage" class="wallet-modal-message"></div>
+
+    <button
+      class="primary-btn"
+      id="walletConfirmButton"
+      onclick="confirmWalletTransaction()">
+      Confirm Deposit
+    </button>
+
+    <button class="secondary-btn wallet-cancel"
+      onclick="closeWalletForm()">
+      Cancel
+    </button>
+
+    <p class="notice">
+      Demo transaction only. No real money is transferred.
+    </p>
+
+  </div>
+</div>
+
 
 <!-- EARNINGS OVERVIEW -->
 
@@ -1630,52 +1799,102 @@ function renderWallet() {
   }
 }
 
+
+/* MYFIN WALLET TRANSACTION FORMS */
+
+let currentWalletAction = 'deposit';
+
 function openWalletForm(type) {
-  const amount = prompt(
-    type === 'deposit'
-      ? 'Enter the demo deposit amount in Naira:'
-      : 'Enter the demo withdrawal amount in Naira:'
-  );
+  currentWalletAction = type;
 
-  if (amount === null) return;
+  const data = getWalletData();
 
-  const value = Number(amount);
+  const modal = document.getElementById('walletModal');
+  const title = document.getElementById('walletModalTitle');
+  const description = document.getElementById('walletModalDescription');
+  const icon = document.getElementById('walletModalIcon');
+  const confirmButton = document.getElementById('walletConfirmButton');
+  const message = document.getElementById('walletModalMessage');
 
-  if (!Number.isFinite(value) || value <= 0) {
-    alert('Please enter a valid amount greater than zero.');
+  title.textContent = type === 'deposit'
+    ? 'Deposit Money'
+    : 'Withdraw Money';
+
+  description.textContent = type === 'deposit'
+    ? 'Enter the amount you want to add to your demo wallet.'
+    : 'Enter the amount you want to withdraw from your demo wallet.';
+
+  icon.textContent = type === 'deposit' ? '💳' : '↗';
+
+  confirmButton.textContent = type === 'deposit'
+    ? 'Confirm Deposit'
+    : 'Confirm Withdrawal';
+
+  document.getElementById('walletAvailable').textContent =
+    formatWalletMoney(data.balance);
+
+  document.getElementById('walletAmount').value = '';
+  message.textContent = '';
+  modal.classList.remove('hidden');
+
+  setTimeout(() => {
+    document.getElementById('walletAmount').focus();
+  }, 100);
+}
+
+function closeWalletForm() {
+  document.getElementById('walletModal').classList.add('hidden');
+  document.getElementById('walletAmount').value = '';
+  document.getElementById('walletModalMessage').textContent = '';
+}
+
+function confirmWalletTransaction() {
+  const input = document.getElementById('walletAmount');
+  const message = document.getElementById('walletModalMessage');
+  const amount = Number(input.value);
+
+  if (!Number.isFinite(amount) || amount <= 0) {
+    message.textContent = 'Please enter a valid amount.';
+    return;
+  }
+
+  if (amount > 1000000000) {
+    message.textContent = 'Please enter a smaller demo amount.';
     return;
   }
 
   const data = getWalletData();
 
-  if (type === 'withdraw' && value > data.balance) {
-    alert('Insufficient demo wallet balance.');
+  if (currentWalletAction === 'withdraw' && amount > data.balance) {
+    message.textContent = 'Insufficient demo wallet balance.';
     return;
   }
 
-  if (type === 'deposit') {
-    data.balance += value;
-    data.deposits += value;
+  if (currentWalletAction === 'deposit') {
+    data.balance += amount;
+    data.deposits += amount;
   } else {
-    data.balance -= value;
-    data.withdrawals += value;
+    data.balance -= amount;
+    data.withdrawals += amount;
   }
 
   data.transactions.unshift({
-    type: type === 'deposit' ? 'Deposit' : 'Withdrawal',
-    amount: value,
+    type: currentWalletAction === 'deposit' ? 'Deposit' : 'Withdrawal',
+    amount: amount,
     date: new Date().toLocaleString('en-NG')
   });
 
   saveWalletData(data);
   renderWallet();
+  closeWalletForm();
 
   alert(
-    type === 'deposit'
+    currentWalletAction === 'deposit'
       ? 'Demo deposit recorded successfully!'
       : 'Demo withdrawal recorded successfully!'
   );
 }
+
 
 /* LOAD WALLET */
 
