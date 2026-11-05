@@ -31,7 +31,7 @@ button{cursor:pointer}
 .hidden{display:none!important}
 
 .brand{
-font-size:25px; by
+font-size:25px; 
 font-weight:800;
 letter-spacing:1px;
 }
@@ -442,6 +442,106 @@ font-size:11px;
 line-height:1.6;
 }
 
+/* MYFIN WALLET */
+.wallet-section {
+  margin-top: 22px;
+  padding: 20px;
+  background: linear-gradient(145deg, #101d35, #0b1427);
+  border: 1px solid rgba(40, 170, 255, 0.2);
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+}
+
+.wallet-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.wallet-label {
+  color: #9aabc5;
+  font-size: 13px;
+}
+
+.wallet-balance {
+  color: #ffffff;
+  font-size: 30px;
+  font-weight: 800;
+  margin-top: 8px;
+}
+
+.wallet-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.wallet-btn {
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.wallet-deposit {
+  background: #16a8e8;
+  color: #ffffff;
+}
+
+.wallet-withdraw {
+  background: #1b2942;
+  color: #ffffff;
+  border: 1px solid #344764;
+}
+
+.wallet-stat {
+  background: #111e34;
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 14px;
+  padding: 15px;
+}
+
+.wallet-stat small {
+  color: #91a3bd;
+}
+
+.wallet-stat strong {
+  display: block;
+  color: #ffffff;
+  font-size: 18px;
+  margin-top: 7px;
+}
+
+.wallet-transaction {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+
+.wallet-transaction:last-child {
+  border-bottom: none;
+}
+
+.wallet-transaction small {
+  display: block;
+  color: #91a3bd;
+  margin-top: 4px;
+}
+
+.wallet-positive {
+  color: #25d69a;
+}
+
+.wallet-negative {
+  color: #ff7585;
+}
+
 @media(max-width:700px){
 .landing-features{grid-template-columns:1fr}
 .stats-grid{grid-template-columns:repeat(2,1fr)}
@@ -615,7 +715,56 @@ line-height:1.6;
       </div>
     </div>
 
-    <!-- EARNINGS OVERVIEW -->
+    </div>
+
+<!-- MYFIN WALLET -->
+<div class="wallet-section">
+
+  <div class="wallet-header">
+    <div>
+      <div class="wallet-label">MYFIN WALLET</div>
+      <h3 style="color:white;margin-top:6px;">Wallet Overview</h3>
+    </div>
+    <span style="color:#25d69a;">● Demo</span>
+  </div>
+
+  <div class="wallet-actions">
+    <button class="wallet-btn wallet-deposit"
+      onclick="openWalletForm('deposit')">
+      + Deposit
+    </button>
+
+    <button class="wallet-btn wallet-withdraw"
+      onclick="openWalletForm('withdraw')">
+      ↗ Withdraw
+    </button>
+  </div>
+
+  <div class="stats-grid" style="margin-top:18px;">
+    <div class="wallet-stat">
+      <small>Total Deposits</small>
+      <strong id="walletDeposits">₦0.00</strong>
+    </div>
+
+    <div class="wallet-stat">
+      <small>Total Withdrawals</small>
+      <strong id="walletWithdrawals">₦0.00</strong>
+    </div>
+  </div>
+
+  <h3 class="section-title" style="margin-top:22px;">
+    Recent Transactions
+  </h3>
+
+  <div id="walletTransactions">
+    <p style="color:#91a3bd;font-size:13px;">
+      No transactions yet.
+    </p>
+  </div>
+
+</div>
+
+<!-- EARNINGS OVERVIEW -->
 
     <h3 class="section-title">Earnings Overview</h3>
 
@@ -1382,6 +1531,140 @@ function demoNotice(feature) {
     ' is part of the MYFIN demo. This feature is not connected yet.'
   );
 }
+
+/* MYFIN DEMO WALLET SYSTEM */
+
+const MYFIN_WALLET_KEY = 'myfinDemoWallet';
+
+function getWalletData() {
+  try {
+    const saved = JSON.parse(
+      localStorage.getItem(MYFIN_WALLET_KEY) || '{}'
+    );
+
+    return {
+      balance: Number(saved.balance) || 0,
+      deposits: Number(saved.deposits) || 0,
+      withdrawals: Number(saved.withdrawals) || 0,
+      transactions: Array.isArray(saved.transactions)
+        ? saved.transactions
+        : []
+    };
+  } catch (error) {
+    return {
+      balance: 0,
+      deposits: 0,
+      withdrawals: 0,
+      transactions: []
+    };
+  }
+}
+
+function saveWalletData(data) {
+  localStorage.setItem(MYFIN_WALLET_KEY, JSON.stringify(data));
+}
+
+function formatWalletMoney(amount) {
+  return '₦' + Number(amount).toLocaleString('en-NG', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  });
+}
+
+function renderWallet() {
+  const data = getWalletData();
+
+  const balance = document.querySelector('.balance-amount');
+  const deposits = document.getElementById('walletDeposits');
+  const withdrawals = document.getElementById('walletWithdrawals');
+  const history = document.getElementById('walletTransactions');
+
+  if (balance) {
+    balance.textContent = formatWalletMoney(data.balance);
+  }
+
+  if (deposits) {
+    deposits.textContent = formatWalletMoney(data.deposits);
+  }
+
+  if (withdrawals) {
+    withdrawals.textContent = formatWalletMoney(data.withdrawals);
+  }
+
+  if (history) {
+    if (data.transactions.length === 0) {
+      history.innerHTML =
+        '<p style="color:#91a3bd;font-size:13px;">No transactions yet.</p>';
+    } else {
+      history.innerHTML = data.transactions.slice(0, 10).map(item => {
+        const positive = item.type === 'Deposit';
+
+        return `
+          <div class="wallet-transaction">
+            <div>
+              <strong style="color:white;">${item.type}</strong>
+              <small>${item.date} · Demo transaction</small>
+            </div>
+            <strong class="${positive ? 'wallet-positive' : 'wallet-negative'}">
+              ${positive ? '+' : '-'}${formatWalletMoney(item.amount)}
+            </strong>
+          </div>
+        `;
+      }).join('');
+    }
+  }
+}
+
+function openWalletForm(type) {
+  const amount = prompt(
+    type === 'deposit'
+      ? 'Enter the demo deposit amount in Naira:'
+      : 'Enter the demo withdrawal amount in Naira:'
+  );
+
+  if (amount === null) return;
+
+  const value = Number(amount);
+
+  if (!Number.isFinite(value) || value <= 0) {
+    alert('Please enter a valid amount greater than zero.');
+    return;
+  }
+
+  const data = getWalletData();
+
+  if (type === 'withdraw' && value > data.balance) {
+    alert('Insufficient demo wallet balance.');
+    return;
+  }
+
+  if (type === 'deposit') {
+    data.balance += value;
+    data.deposits += value;
+  } else {
+    data.balance -= value;
+    data.withdrawals += value;
+  }
+
+  data.transactions.unshift({
+    type: type === 'deposit' ? 'Deposit' : 'Withdrawal',
+    amount: value,
+    date: new Date().toLocaleString('en-NG')
+  });
+
+  saveWalletData(data);
+  renderWallet();
+
+  alert(
+    type === 'deposit'
+      ? 'Demo deposit recorded successfully!'
+      : 'Demo withdrawal recorded successfully!'
+  );
+}
+
+/* LOAD WALLET */
+
+renderWallet();
 
 /* RESTORE AN EXISTING LOGIN SESSION */
 
