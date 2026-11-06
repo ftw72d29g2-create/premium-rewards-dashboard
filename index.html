@@ -762,6 +762,7 @@ line-height:1.6;
 
 </div>
 
+
 <!-- LOGIN SCREEN -->
 
 <section id="login" class="hidden">
@@ -770,74 +771,147 @@ line-height:1.6;
 
     <div class="brand">MY<span>FIN</span></div>
 
-    <h2>Welcome Back</h2>
+    <!-- SIGN IN FORM -->
 
-    <p>Sign in with your MYFIN account to continue.</p>
+    <div id="signInView">
 
-    <form id="loginForm">
+      <h2>Welcome Back</h2>
+      <p>Sign in with your MYFIN account to continue.</p>
 
-      <label for="loginEmail">Email Address</label>
-      <input
-        type="email"
-        id="loginEmail"
-        placeholder="Enter your email"
-        autocomplete="email"
-        required
-      >
+      <form id="loginForm">
 
-      <label for="loginPassword">Password</label>
-      <input
-        type="password"
-        id="loginPassword"
-        placeholder="Enter your password"
-        autocomplete="current-password"
-        required
-      >
-      <p style="text-align:right;margin-top:12px;font-size:13px">
-  <a href="#" onclick="resetMyfinPassword();return false"
-     style="color:#55b6ff;text-decoration:none">
-    Forgot Password?
-  </a>
-</p>
+        <label for="loginEmail">Email Address</label>
+        <input
+          type="email"
+          id="loginEmail"
+          placeholder="Enter your email"
+          autocomplete="email"
+          required
+        >
 
-      <button class="primary-btn" id="loginButton" type="submit">
-        Sign In
-      </button>
+        <label for="loginPassword">Password</label>
+        <input
+          type="password"
+          id="loginPassword"
+          placeholder="Enter your password"
+          autocomplete="current-password"
+          required
+        >
 
-      <div id="loginMessage" class="login-message" role="alert"></div>
+        <p style="text-align:right;margin-top:12px;font-size:13px">
+          <a href="#" onclick="resetMyfinPassword();return false"
+             style="color:#55b6ff;text-decoration:none">
+            Forgot Password?
+          </a>
+        </p>
 
-    </form>
- 
-<button
-  type="button"
-  onclick="previewMyfinDashboard()"
-  style="
-    width:100%;
-    margin-top:18px;
-    padding:15px;
-    border:1px solid #55b6ff;
-    border-radius:12px;
-    background:linear-gradient(135deg,#12345b,#0878d1);
-    color:white;
-    font-size:15px;
-    font-weight:700;
-    cursor:pointer;
-  ">
-  👁 Explore Demo Dashboard
-</button>
+        <button class="primary-btn" id="loginButton" type="submit">
+          Sign In
+        </button>
 
-<p style="text-align:center;color:#91a5c5;font-size:12px;margin-top:10px;">
-  Demo preview only — no login required.
-</p>
+        <div id="loginMessage" class="login-message" role="alert"></div>
+
+      </form>
+
+      <p class="login-bottom">
+        New to MYFIN?
+        <a href="#" onclick="showCreateAccount();return false">
+          Create Account
+        </a>
+      </p>
+
+    </div>
+
+    <!-- CREATE ACCOUNT FORM -->
+
+    <div id="createAccountView" class="hidden">
+
+      <h2>Create Your Account</h2>
+      <p>Join MYFIN and start your rewards journey.</p>
+
+      <form id="signupForm">
+
+        <label for="signupName">Full Name</label>
+        <input
+          type="text"
+          id="signupName"
+          placeholder="Enter your full name"
+          autocomplete="name"
+          required
+        >
+
+        <label for="signupEmail">Email Address</label>
+        <input
+          type="email"
+          id="signupEmail"
+          placeholder="Enter your email"
+          autocomplete="email"
+          required
+        >
+
+        <label for="signupPassword">Create Password</label>
+        <input
+          type="password"
+          id="signupPassword"
+          placeholder="At least 6 characters"
+          minlength="6"
+          autocomplete="new-password"
+          required
+        >
+
+        <label for="signupConfirmPassword">Confirm Password</label>
+        <input
+          type="password"
+          id="signupConfirmPassword"
+          placeholder="Enter password again"
+          minlength="6"
+          autocomplete="new-password"
+          required
+        >
+
+        <button class="primary-btn" id="signupButton" type="submit">
+          Create My Account
+        </button>
+
+        <div id="signupMessage" class="login-message" role="alert"></div>
+
+      </form>
+
+      <p class="login-bottom">
+        Already have an account?
+        <a href="#" onclick="showSignIn();return false">
+          Sign In
+        </a>
+      </p>
+
+    </div>
+
+    <button
+      type="button"
+      onclick="previewMyfinDashboard()"
+      style="
+        width:100%;
+        margin-top:18px;
+        padding:15px;
+        border:1px solid #55b6ff;
+        border-radius:12px;
+        background:linear-gradient(135deg,#12345b,#0878d1);
+        color:white;
+        font-size:15px;
+        font-weight:700;
+        cursor:pointer;
+      ">
+      👁 Explore Dashboard Preview
+    </button>
 
     <p class="login-bottom">
-      Sign in with an account registered in MYFIN.
       <a onclick="showLanding()">Go back</a>
     </p>
 
   </div>
 
 </section>
+
 
 <!-- DASHBOARD -->
 
@@ -1398,51 +1472,79 @@ async function loadUserProfile(user) {
   userInitial.textContent = displayName.charAt(0).toUpperCase();
 }
 
-/* SUPABASE SIGN IN */
 
-document.getElementById('loginForm').addEventListener('submit', async function(event) {
+// SWITCH BETWEEN SIGN IN AND CREATE ACCOUNT
+
+function showCreateAccount() {
+  document.getElementById('signInView').classList.add('hidden');
+  document.getElementById('createAccountView').classList.remove('hidden');
+}
+
+function showSignIn() {
+  document.getElementById('createAccountView').classList.add('hidden');
+  document.getElementById('signInView').classList.remove('hidden');
+}
+
+// CREATE NEW MYFIN ACCOUNT
+
+document.getElementById('signupForm').addEventListener('submit', async function(event) {
   event.preventDefault();
 
-  const email = document.getElementById('loginEmail').value.trim();
-  const password = document.getElementById('loginPassword').value;
-  const button = document.getElementById('loginButton');
-  const message = document.getElementById('loginMessage');
+  const fullName = document.getElementById('signupName').value.trim();
+  const email = document.getElementById('signupEmail').value.trim();
+  const password = document.getElementById('signupPassword').value;
+  const confirmPassword = document.getElementById('signupConfirmPassword').value;
+
+  const button = document.getElementById('signupButton');
+  const message = document.getElementById('signupMessage');
 
   message.textContent = '';
 
   if (!myfinSupabase) {
-    message.textContent = 'Supabase is not configured. Check your publishable key and connection.';
+    message.textContent = 'Supabase connection is unavailable.';
+    return;
+  }
+
+  if (password !== confirmPassword) {
+    message.textContent = 'Your passwords do not match.';
     return;
   }
 
   button.disabled = true;
-  button.textContent = 'Signing in...';
+  button.textContent = 'Creating account...';
 
   try {
-    const { data, error } = await myfinSupabase.auth.signInWithPassword({
+    const { data, error } = await myfinSupabase.auth.signUp({
       email: email,
-      password: password
+      password: password,
+      options: {
+        data: {
+          full_name: fullName
+        }
+      }
     });
 
-    if (error) {
-      throw error;
-    }
+    if (error) throw error;
 
-    if (!data.user) {
-      throw new Error('No user account was returned.');
+    if (data.session && data.user) {
+      await loadUserProfile(data.user);
+      showDashboard();
+    } else {
+      message.style.color = '#55b6ff';
+      message.textContent =
+        'Account created! Please check your email to confirm your account, then sign in.';
     }
-
-    await loadUserProfile(data.user);
-    showDashboard();
 
   } catch (error) {
-    message.textContent = 'Sign in failed: ' + error.message;
+    message.style.color = '#ff9c9c';
+    message.textContent = 'Registration failed: ' + error.message;
 
   } finally {
     button.disabled = false;
-    button.textContent = 'Sign In';
+    button.textContent = 'Create My Account';
   }
 });
+
 
 /* LOG OUT */
 
