@@ -976,31 +976,31 @@ line-height:1.6;
 
 <!-- EARNINGS OVERVIEW -->
 
-    <h3 class="section-title">Earnings Overview</h3>
+<h3 class="section-title">Earnings Overview</h3>
 
-    <div class="stats-grid">
+<div class="stats-grid">
 
-      <div class="stat-card">
-        <p>Total Earnings</p>
-        <h3>₦0.00</h3>
-      </div>
+  <div class="stat-card">
+    <p>Total Earnings</p>
+    <h3 id="total-earnings">₦0.00</h3>
+  </div>
 
-      <div class="stat-card">
-        <p>Today's Earnings</p>
-        <h3>₦0.00</h3>
-      </div>
+  <div class="stat-card">
+    <p>Today's Earnings</p>
+    <h3 id="today-earnings">₦0.00</h3>
+  </div>
 
-      <div class="stat-card">
-        <p>Pending Rewards</p>
-        <h3>₦0.00</h3>
-      </div>
+  <div class="stat-card">
+    <p>Pending Rewards</p>
+    <h3 id="pending-rewards">₦0.00</h3>
+  </div>
 
-      <div class="stat-card">
-        <p>Lifetime Rewards</p>
-        <h3>₦0.00</h3>
-      </div>
+  <div class="stat-card">
+    <p>Lifetime Rewards</p>
+    <h3 id="lifetime-rewards">₦0.00</h3>
+  </div>
 
-    </div>
+</div>
 
     <!-- QUICK ACTIONS -->
 
@@ -1618,6 +1618,8 @@ function finishQuiz() {
 
   localStorage.setItem('myfinQuizData', JSON.stringify(data));
 
+recordMyfinReward(reward);
+
   document.getElementById('quizContainer').style.display = 'none';
   document.getElementById('quizResult').style.display = 'block';
 
@@ -1644,6 +1646,20 @@ function restartQuiz() {
 
   renderQuiz();
 }
+
+/* MYFIN LIFETIME REWARD TRACKER */
+
+function recordMyfinReward(amount) {
+  const currentTotal = Number(
+    localStorage.getItem('myfinLifetimeRewards') || 0
+  );
+
+  localStorage.setItem(
+    'myfinLifetimeRewards',
+    currentTotal + amount
+  );
+}
+
 
 /* DAILY TASKS FEATURE */
 
