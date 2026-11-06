@@ -2165,6 +2165,48 @@ async function resetMyfinPassword() {
 }
 
 checkExistingSession();
+ 
+/* SIGN IN */
+
+document.getElementById('loginForm').addEventListener('submit', async function(event) {
+  event.preventDefault();
+
+  const email = document.getElementById('loginEmail').value.trim();
+  const password = document.getElementById('loginPassword').value;
+  const button = document.getElementById('loginButton');
+  const message = document.getElementById('loginMessage');
+
+  message.style.color = '#ff9c9c';
+  message.textContent = '';
+
+  if (!myfinSupabase) {
+    message.textContent = 'Connection unavailable. Please try again later.';
+    return;
+  }
+
+  button.disabled = true;
+  button.textContent = 'Signing in...';
+
+  try {
+    const { data, error } = await myfinSupabase.auth.signInWithPassword({
+      email: email,
+      password: password
+    });
+
+    if (error) throw error;
+
+    await loadUserProfile(data.user);
+    showDashboard();
+
+  } catch (error) {
+    message.textContent = 'Sign in failed: ' + error.message;
+
+  } finally {
+    button.disabled = false;
+    button.textContent = 'Sign In';
+  }
+});
+
 
 </script>
 </body>
