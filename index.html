@@ -1327,10 +1327,44 @@ function previewMyfinDashboard() {
   window.scrollTo(0, 0);
 }
 
+function renderEarningsOverview() {
+  const quizData = getQuizData();
+  const taskData = getDailyTaskData();
+
+  const todayEarnings =
+    Number(quizData.credits || 0) +
+    Number(taskData.credits || 0);
+
+  const lifetimeRewards = Number(
+    localStorage.getItem('myfinLifetimeRewards') || 0
+  );
+
+  const formatMoney = amount =>
+    '₦' + amount.toLocaleString('en-NG', {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    });
+
+  document.getElementById('total-earnings').textContent =
+    formatMoney(lifetimeRewards);
+
+  document.getElementById('today-earnings').textContent =
+    formatMoney(todayEarnings);
+
+  document.getElementById('pending-rewards').textContent =
+    formatMoney(0);
+
+  document.getElementById('lifetime-rewards').textContent =
+    formatMoney(lifetimeRewards);
+}
+
 function showDashboard() {
   landing.classList.add('hidden');
   login.classList.add('hidden');
   dashboard.classList.remove('hidden');
+
+  renderEarningsOverview();
+
   window.scrollTo(0, 0);
 }
 
@@ -1700,9 +1734,11 @@ function getDailyTaskData() {
   return saved;
 }
 
-function saveDailyTaskData(data) {
-  localStorage.setItem('myfinDailyTasks', JSON.stringify(data));
-}
+saveDailyTaskData(data);
+
+recordMyfinReward(reward);
+
+renderDailyTasks();
 
 function completeTask(taskId, reward, button) {
   const data = getDailyTaskData();
