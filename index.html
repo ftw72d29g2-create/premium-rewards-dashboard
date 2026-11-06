@@ -47,7 +47,7 @@ font-weight:bold;
 }
 
 .primary-btn:disabled{
-opacity:.65;
+opacity:.65
 cursor:not-allowed;
 }
 
@@ -867,9 +867,9 @@ line-height:1.6;
       <div class="balance-label">AVAILABLE BALANCE</div>
       <div class="balance-amount">₦0.00</div>
 
-  <div class="balance-footer">
+<div class="balance-footer">
   <span>MYFIN Personal Wallet</span>
-  <span>● Preview Mode</span>
+  <span>● Account Overview</span>
 </div>
 
 <!-- MYFIN WALLET -->
@@ -1719,9 +1719,12 @@ function closeDailyTasks() {
   showDashboard();
 }
 
+
 function getDailyTaskData() {
   const today = new Date().toISOString().slice(0, 10);
-  const saved = JSON.parse(localStorage.getItem('myfinDailyTasks') || '{}');
+  const saved = JSON.parse(
+    localStorage.getItem('myfinDailyTasks') || '{}'
+  );
 
   if (saved.date !== today) {
     return {
@@ -1734,11 +1737,12 @@ function getDailyTaskData() {
   return saved;
 }
 
-saveDailyTaskData(data);
-
-recordMyfinReward(reward);
-
-renderDailyTasks();
+function saveDailyTaskData(data) {
+  localStorage.setItem(
+    'myfinDailyTasks',
+    JSON.stringify(data)
+  );
+}
 
 function completeTask(taskId, reward, button) {
   const data = getDailyTaskData();
@@ -1748,7 +1752,9 @@ function completeTask(taskId, reward, button) {
     return;
   }
 
-  const task = dailyTaskList.find(item => item.id === taskId);
+  const task = dailyTaskList.find(
+    item => item.id === taskId
+  );
 
   if (!task || task.reward !== reward) {
     alert('Task could not be verified.');
@@ -1759,9 +1765,11 @@ function completeTask(taskId, reward, button) {
   data.credits += reward;
 
   saveDailyTaskData(data);
+  recordMyfinReward(reward);
   renderDailyTasks();
+  renderEarningsOverview();
 
-  alert('Task completed! You earned ₦' + reward + ' demo credits.');
+  alert('Task completed! You earned ₦' + reward + ' reward credits.');
 }
 
 function renderDailyTasks() {
@@ -1773,15 +1781,22 @@ function renderDailyTasks() {
   document.getElementById('taskHistory').innerHTML =
     data.completed.length
       ? data.completed.map(id => {
-          const task = dailyTaskList.find(item => item.id === id);
+          const task = dailyTaskList.find(
+            item => item.id === id
+          );
+
           return task
-            ? '✅ ' + task.name + ' — ₦' + task.reward + ' demo credits'
+            ? '✅ ' + task.name + ' — ₦' + task.reward + ' credits'
             : '';
         }).join('<br>')
       : 'No tasks completed yet.';
 
   document.querySelectorAll('.task-button').forEach(button => {
-    const taskId = button.getAttribute('onclick').match(/'([^']+)'/)[1];
+    const match = button.getAttribute('onclick').match(/'([^']+)'/);
+
+    if (!match) return;
+
+    const taskId = match[1];
 
     if (data.completed.includes(taskId)) {
       button.textContent = 'Completed ✓';
@@ -1792,6 +1807,9 @@ function renderDailyTasks() {
     }
   });
 }
+
+renderDailyTasks();
+
 
 
 /* DEMO ACTIONS */
