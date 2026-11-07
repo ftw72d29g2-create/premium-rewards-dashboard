@@ -703,7 +703,7 @@ line-height:1.6;
   </p>
 
 <div class="hero-buttons">
-  <button class="primary-btn" onclick="showLogin()">
+  <button class="primary-btn" onclick="startRegistration()">
     Get Started
   </button>
 
@@ -711,6 +711,7 @@ line-height:1.6;
     onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})">
     Explore Features
   </button>
+
 
 <button
   type="button"
@@ -2202,6 +2203,23 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
     button.textContent = 'Sign In';
   }
 });
+
+/* GET STARTED OPENS CREATE ACCOUNT */
+
+function showLogin() {
+  landing.classList.add('hidden');
+  login.classList.remove('hidden');
+  dashboard.classList.add('hidden');
+
+  document.getElementById('loginMessage').textContent = '';
+  showSignIn();
+  window.scrollTo(0, 0);
+}
+
+function startRegistration() {
+  showLogin();
+  showCreateAccount();
+}
 
 
 </script>
