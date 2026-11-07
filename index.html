@@ -8,653 +8,115 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-
-:root{
---bg:#080e1c;
---panel:#101c31;
---blue:#258cff;
---cyan:#55b6ff;
---text:#fff;
---muted:#91a5c5;
---border:#203653;
-}
-
-body{
-font-family:Arial,sans-serif;
-background:var(--bg);
-color:var(--text);
-min-height:100vh;
-}
-
+:root{--bg:#080e1c;--panel:#101c31;--blue:#258cff;--cyan:#55b6ff;--text:#fff;--muted:#91a5c5;--border:#203653}
+body{font-family:Arial,sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
 button,input{font:inherit}
 button{cursor:pointer}
 .hidden{display:none!important}
-
-.brand{
-font-size:25px; 
-font-weight:800;
-letter-spacing:1px;
-}
+.brand{font-size:25px;font-weight:800;letter-spacing:1px}
 .brand span{color:var(--cyan)}
-
-.primary-btn{
-border:0;
-background:linear-gradient(110deg,#258cff,#55b6ff);
-color:#fff;
-padding:13px 22px;
-border-radius:10px;
-font-weight:bold;
-}
-
-.primary-btn:disabled{
-opacity:.65
-cursor:not-allowed;
-}
-
-.secondary-btn{
-background:transparent;
-border:1px solid var(--border);
-color:#fff;
-padding:12px 20px;
-border-radius:10px;
-}
+.primary-btn{border:0;background:linear-gradient(110deg,#258cff,#55b6ff);color:#fff;padding:13px 22px;border-radius:10px;font-weight:bold}
+.primary-btn:disabled{opacity:.65;cursor:not-allowed}
+.secondary-btn{background:transparent;border:1px solid var(--border);color:#fff;padding:12px 20px;border-radius:10px}
 
 /* LANDING PAGE */
-
-#landing header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:22px 8%;
-border-bottom:1px solid #1c2940;
-}
-
-.header-links{
-display:flex;
-align-items:center;
-gap:24px;
-}
-
-.header-links a{
-color:var(--muted);
-text-decoration:none;
-font-size:14px;
-}
-
-.hero{
-padding:85px 8% 70px;
-max-width:1000px;
-}
-
-.hero-tag{
-display:inline-block;
-color:var(--cyan);
-background:#102849;
-border:1px solid #1d4b7b;
-padding:9px 14px;
-border-radius:30px;
-font-size:12px;
-margin-bottom:25px;
-}
-
-.hero h1{
-font-size:clamp(38px,7vw,68px);
-line-height:1.12;
-max-width:750px;
-margin-bottom:20px;
-}
-
+#landing header{display:flex;justify-content:space-between;align-items:center;padding:22px 8%;border-bottom:1px solid #1c2940}
+.header-links{display:flex;align-items:center;gap:24px}
+.header-links a{color:var(--muted);text-decoration:none;font-size:14px}
+.hero{padding:85px 8% 70px;max-width:1000px}
+.hero-tag{display:inline-block;color:var(--cyan);background:#102849;border:1px solid #1d4b7b;padding:9px 14px;border-radius:30px;font-size:12px;margin-bottom:25px}
+.hero h1{font-size:clamp(38px,7vw,68px);line-height:1.12;max-width:750px;margin-bottom:20px}
 .hero h1 span{color:var(--cyan)}
-
-.hero p{
-color:var(--muted);
-font-size:17px;
-line-height:1.7;
-max-width:590px;
-margin-bottom:28px;
-}
-
-.hero-buttons{
-display:flex;
-gap:12px;
-flex-wrap:wrap;
-}
-
-.landing-features{
-padding:20px 8% 80px;
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:18px;
-}
-
-.feature{
-background:var(--panel);
-border:1px solid var(--border);
-padding:24px;
-border-radius:16px;
-}
-
-.feature .icon{
-font-size:27px;
-margin-bottom:15px;
-}
-
+.hero p{color:var(--muted);font-size:17px;line-height:1.7;max-width:590px;margin-bottom:28px}
+.hero-buttons{display:flex;gap:12px;flex-wrap:wrap}
+.landing-features{padding:20px 8% 80px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.feature{background:var(--panel);border:1px solid var(--border);padding:24px;border-radius:16px}
+.feature .icon{font-size:27px;margin-bottom:15px}
 .feature h3{margin-bottom:10px}
-
-.feature p{
-color:var(--muted);
-font-size:13px;
-line-height:1.6;
-}
-
-footer{
-padding:25px 8%;
-border-top:1px solid var(--border);
-color:var(--muted);
-font-size:12px;
-}
+.feature p{color:var(--muted);font-size:13px;line-height:1.6}
+footer{padding:25px 8%;border-top:1px solid var(--border);color:var(--muted);font-size:12px}
 
 /* LOGIN SCREEN */
-
-#login{
-min-height:100vh;
-display:flex;
-align-items:center;
-justify-content:center;
-padding:25px;
-}
-
-.login-container{
-width:100%;
-max-width:420px;
-background:var(--panel);
-border:1px solid var(--border);
-border-radius:20px;
-padding:32px;
-box-shadow:0 20px 70px #0006;
-}
-
+#login{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:25px}
+.login-container{width:100%;max-width:420px;background:var(--panel);border:1px solid var(--border);border-radius:20px;padding:32px;box-shadow:0 20px 70px #0006}
 .login-container .brand{margin-bottom:30px}
-
-.login-container h2{
-font-size:27px;
-margin-bottom:9px;
-}
-
-.login-container>p{
-color:var(--muted);
-font-size:14px;
-line-height:1.6;
-margin-bottom:25px;
-}
-
-.login-container label{
-display:block;
-font-size:13px;
-margin:17px 0 8px;
-color:#dce8fa;
-}
-
-.login-container input{
-width:100%;
-padding:14px;
-border-radius:9px;
-border:1px solid var(--border);
-background:#091426;
-color:white;
-outline:none;
-}
-
+.login-container h2{font-size:27px;margin-bottom:9px}
+.login-container>p{color:var(--muted);font-size:14px;line-height:1.6;margin-bottom:25px}
+.login-container label{display:block;font-size:13px;margin:17px 0 8px;color:#dce8fa}
+.login-container input{width:100%;padding:14px;border-radius:9px;border:1px solid var(--border);background:#091426;color:white;outline:none}
 .login-container input:focus{border-color:var(--blue)}
-
-.login-container button{
-width:100%;
-margin-top:22px;
-}
-
-.login-bottom{
-text-align:center;
-color:var(--muted);
-font-size:13px;
-margin-top:20px!important;
-margin-bottom:0!important;
-}
-
-.login-bottom a{
-color:var(--cyan);
-cursor:pointer;
-}
-
-.login-message{
-font-size:13px;
-line-height:1.5;
-margin-top:15px;
-color:#ff9c9c;
-}
+.login-container button{width:100%;margin-top:22px}
+.login-bottom{text-align:center;color:var(--muted);font-size:13px;margin-top:20px!important;margin-bottom:0!important}
+.login-bottom a{color:var(--cyan);cursor:pointer}
+.login-message{font-size:13px;line-height:1.5;margin-top:15px;color:#ff9c9c}
 
 /* DASHBOARD */
-
-#dashboard{
-min-height:100vh;
-padding-bottom:35px;
-}
-
-.dashboard-header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:20px 7%;
-border-bottom:1px solid var(--border);
-}
-
-.user-circle{
-width:40px;
-height:40px;
-border-radius:50%;
-display:grid;
-place-items:center;
-background:#1b3d65;
-color:var(--cyan);
-font-weight:bold;
-}
-
-.dashboard-main{
-max-width:1100px;
-margin:auto;
-padding:32px 25px;
-}
-
-.welcome-row{
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:15px;
-margin-bottom:25px;
-}
-
-.welcome-row h2{
-font-size:25px;
-margin-bottom:7px;
-}
-
-.welcome-row p{
-color:var(--muted);
-font-size:13px;
-}
-
-.balance-card{
-position:relative;
-overflow:hidden;
-background:linear-gradient(120deg,#123d70,#1264b6 65%,#1888dc);
-border:1px solid #398edb;
-border-radius:20px;
-padding:27px;
-margin-bottom:28px;
-box-shadow:0 12px 40px #0879df25,0 0 30px #258cff20;
-}
-
-.balance-card:after{
-content:"";
-position:absolute;
-width:230px;
-height:230px;
-border-radius:50%;
-background:#72c5ff20;
-right:-65px;
-top:-100px;
-}
-
-.balance-label{
-font-size:12px;
-letter-spacing:1.5px;
-color:#d4eaff;
-margin-bottom:15px;
-}
-
-.balance-amount{
-font-size:clamp(32px,6vw,43px);
-font-weight:bold;
-margin-bottom:20px;
-}
-
-.balance-footer{
-display:flex;
-justify-content:space-between;
-color:#d5eaff;
-font-size:12px;
-}
-
-.section-title{
-font-size:18px;
-margin:30px 0 15px;
-}
-
-.stats-grid{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:13px;
-}
-
-.stat-card{
-background:var(--panel);
-border:1px solid var(--border);
-padding:19px;
-border-radius:14px;
-}
-
-.stat-card p{
-font-size:12px;
-color:var(--muted);
-margin-bottom:12px;
-}
-
+#dashboard{min-height:100vh;padding-bottom:35px}
+.dashboard-header{display:flex;justify-content:space-between;align-items:center;padding:20px 7%;border-bottom:1px solid var(--border)}
+.user-circle{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:#1b3d65;color:var(--cyan);font-weight:bold}
+.dashboard-main{max-width:1100px;margin:auto;padding:32px 25px}
+.welcome-row{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:25px}
+.welcome-row h2{font-size:25px;margin-bottom:7px}
+.welcome-row p{color:var(--muted);font-size:13px}
+.balance-card{position:relative;overflow:hidden;background:linear-gradient(120deg,#123d70,#1264b6 65%,#1888dc);border:1px solid #398edb;border-radius:20px;padding:27px;margin-bottom:28px;box-shadow:0 12px 40px #0879df25,0 0 30px #258cff20}
+.balance-card:after{content:"";position:absolute;width:230px;height:230px;border-radius:50%;background:#72c5ff20;right:-65px;top:-100px}
+.balance-label{font-size:12px;letter-spacing:1.5px;color:#d4eaff;margin-bottom:15px}
+.balance-amount{font-size:clamp(32px,6vw,43px);font-weight:bold;margin-bottom:20px}
+.balance-footer{display:flex;justify-content:space-between;color:#d5eaff;font-size:12px}
+.section-title{font-size:18px;margin:30px 0 15px}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
+.stat-card{background:var(--panel);border:1px solid var(--border);padding:19px;border-radius:14px}
+.stat-card p{font-size:12px;color:var(--muted);margin-bottom:12px}
 .stat-card h3{font-size:20px}
+.actions-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
+.action-card{background:linear-gradient(145deg,#122441,#0d192d);border:1px solid #23436c;border-radius:15px;padding:19px 15px;text-align:left;color:white;min-height:115px}
+.action-card .action-icon{font-size:24px;margin-bottom:13px}
+.action-card strong{display:block;font-size:14px;margin-bottom:7px}
+.action-card span{font-size:11px;color:var(--muted);line-height:1.4}
+.earning-section>p{color:var(--muted);font-size:13px;margin:-5px 0 17px}
+.earning-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.earning-card{background:linear-gradient(145deg,#122441,#0d192d);border:1px solid #23436c;border-radius:16px;padding:19px 15px}
+.earning-icon{font-size:25px;margin-bottom:14px}
+.earning-card h4{font-size:15px;margin-bottom:8px}
+.earning-card p{color:var(--muted);font-size:12px;line-height:1.5;margin-bottom:14px}
+.earning-reward{color:var(--cyan);font-weight:bold;font-size:14px}
+.activity-card{background:var(--panel);border:1px solid var(--border);border-radius:15px;padding:20px;color:var(--muted);font-size:13px;line-height:1.7}
+.notice{margin-top:22px;color:#8298b9;font-size:11px;line-height:1.6}
 
-.actions-grid{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:13px;
-}
+/* WALLET */
+.wallet-section{margin-top:22px;padding:20px;background:linear-gradient(145deg,#101d35,#0b1427);border:1px solid rgba(40,170,255,.2);border-radius:20px;box-shadow:0 8px 30px rgba(0,0,0,.25)}
+.wallet-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.wallet-label{color:#9aabc5;font-size:13px}
+.wallet-actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
+.wallet-btn{padding:14px;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer}
+.wallet-deposit{background:#16a8e8;color:#fff}
+.wallet-withdraw{background:#1b2942;color:#fff;border:1px solid #344764}
+.wallet-stat{background:#111e34;border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:15px}
+.wallet-stat small{color:#91a3bd}
+.wallet-stat strong{display:block;color:#fff;font-size:18px;margin-top:7px}
+.wallet-transaction{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.07)}
+.wallet-transaction:last-child{border-bottom:none}
+.wallet-transaction small{display:block;color:#91a3bd;margin-top:4px}
+.wallet-positive{color:#25d69a}
+.wallet-negative{color:#ff7585}
 
-.action-card{
-background:linear-gradient(145deg,#122441,#0d192d);
-border:1px solid #23436c;
-border-radius:15px;
-padding:19px 15px;
-text-align:left;
-color:white;
-min-height:115px;
-}
-
-.action-card .action-icon{
-font-size:24px;
-margin-bottom:13px;
-}
-
-.action-card strong{
-display:block;
-font-size:14px;
-margin-bottom:7px;
-}
-
-.action-card span{
-font-size:11px;
-color:var(--muted);
-line-height:1.4;
-}
-
-.earning-section>p{
-color:var(--muted);
-font-size:13px;
-margin:-5px 0 17px;
-}
-
-.earning-grid{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:14px;
-}
-
-.earning-card{
-background:linear-gradient(145deg,#122441,#0d192d);
-border:1px solid #23436c;
-border-radius:16px;
-padding:19px 15px;
-}
-
-.earning-icon{
-font-size:25px;
-margin-bottom:14px;
-}
-
-.earning-card h4{
-font-size:15px;
-margin-bottom:8px;
-}
-
-.earning-card p{
-color:var(--muted);
-font-size:12px;
-line-height:1.5;
-margin-bottom:14px;
-}
-
-.earning-reward{
-color:var(--cyan);
-font-weight:bold;
-font-size:14px;
-}
-
-.activity-card{
-background:var(--panel);
-border:1px solid var(--border);
-border-radius:15px;
-padding:20px;
-color:var(--muted);
-font-size:13px;
-line-height:1.7;
-}
-
-.notice{
-margin-top:22px;
-color:#8298b9;
-font-size:11px;
-line-height:1.6;
-}
-
-/* MYFIN WALLET */
-.wallet-section {
-  margin-top: 22px;
-  padding: 20px;
-  background: linear-gradient(145deg, #101d35, #0b1427);
-  border: 1px solid rgba(40, 170, 255, 0.2);
-  border-radius: 20px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
-}
-
-.wallet-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 18px;
-}
-
-.wallet-label {
-  color: #9aabc5;
-  font-size: 13px;
-}
-
-.wallet-balance {
-  color: #ffffff;
-  font-size: 30px;
-  font-weight: 800;
-  margin-top: 8px;
-}
-
-.wallet-actions {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-top: 20px;
-}
-
-.wallet-btn {
-  padding: 14px;
-  border: none;
-  border-radius: 12px;
-  font-size: 15px;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.wallet-deposit {
-  background: #16a8e8;
-  color: #ffffff;
-}
-
-.wallet-withdraw {
-  background: #1b2942;
-  color: #ffffff;
-  border: 1px solid #344764;
-}
-
-.wallet-stat {
-  background: #111e34;
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: 14px;
-  padding: 15px;
-}
-
-.wallet-stat small {
-  color: #91a3bd;
-}
-
-.wallet-stat strong {
-  display: block;
-  color: #ffffff;
-  font-size: 18px;
-  margin-top: 7px;
-}
-
-.wallet-transaction {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 14px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.07);
-}
-
-.wallet-transaction:last-child {
-  border-bottom: none;
-}
-
-.wallet-transaction small {
-  display: block;
-  color: #91a3bd;
-  margin-top: 4px;
-}
-
-.wallet-positive {
-  color: #25d69a;
-}
-
-.wallet-negative {
-  color: #ff7585;
-}
-
-
-/* MYFIN WALLET MODAL DESIGN */
-
-.wallet-modal{
-  position:fixed;
-  inset:0;
-  z-index:9999;
-  background:rgba(2,8,20,.82);
-  backdrop-filter:blur(9px);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-}
-
-.wallet-modal-content{
-  position:relative;
-  width:100%;
-  max-width:420px;
-  background:linear-gradient(145deg,#142541,#0a1426);
-  border:1px solid #28517c;
-  border-radius:22px;
-  padding:28px 22px;
-  box-shadow:0 20px 70px #0009,0 0 30px #258cff20;
-}
-
-.wallet-close{
-  position:absolute;
-  top:13px;
-  right:17px;
-  background:transparent;
-  border:0;
-  color:#91a5c5;
-  font-size:30px;
-}
-
-.wallet-modal-content h2{
-  font-size:23px;
-  margin:12px 0 9px;
-}
-
-.wallet-modal-content>p{
-  color:#91a5c5;
-  font-size:13px;
-  line-height:1.6;
-}
-
-.wallet-input-group{
-  margin-top:25px;
-}
-
-.wallet-input-group label{
-  display:block;
-  font-size:13px;
-  margin-bottom:10px;
-}
-
-.wallet-input-wrap{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  background:#091426;
-  border:1px solid #29466b;
-  border-radius:12px;
-  padding:0 15px;
-}
-
-.wallet-input-wrap span{
-  color:#55b6ff;
-  font-size:21px;
-  font-weight:bold;
-}
-
-.wallet-input-wrap input{
-  width:100%;
-  padding:16px 0;
-  background:transparent;
-  border:0;
-  outline:none;
-  color:white;
-  font-size:21px;
-}
-
-.wallet-available{
-  margin-top:14px;
-}
-
-.wallet-available strong{
-  color:#55b6ff;
-}
-
-.wallet-modal-message{
-  color:#ff9c9c;
-  font-size:13px;
-  margin-top:15px;
-  line-height:1.5;
-}
-
-#walletConfirmButton{
-  width:100%;
-  margin-top:22px;
-}
-
-.wallet-cancel{
-  width:100%;
-  margin-top:10px;
-}
-
-.wallet-modal-content .notice{
-  text-align:center;
-  margin-top:18px;
-}
-
+/* WALLET MODAL */
+.wallet-modal{position:fixed;inset:0;z-index:9999;background:rgba(2,8,20,.82);backdrop-filter:blur(9px);display:flex;align-items:center;justify-content:center;padding:20px}
+.wallet-modal-content{position:relative;width:100%;max-width:420px;background:linear-gradient(145deg,#142541,#0a1426);border:1px solid #28517c;border-radius:22px;padding:28px 22px;box-shadow:0 20px 70px #0009,0 0 30px #258cff20}
+.wallet-close{position:absolute;top:13px;right:17px;background:transparent;border:0;color:#91a5c5;font-size:30px}
+.wallet-modal-content h2{font-size:23px;margin:12px 0 9px}
+.wallet-modal-content>p{color:#91a5c5;font-size:13px;line-height:1.6}
+.wallet-input-group{margin-top:25px}
+.wallet-input-group label{display:block;font-size:13px;margin-bottom:10px}
+.wallet-input-wrap{display:flex;align-items:center;gap:10px;background:#091426;border:1px solid #29466b;border-radius:12px;padding:0 15px}
+.wallet-input-wrap span{color:#55b6ff;font-size:21px;font-weight:bold}
+.wallet-input-wrap input{width:100%;padding:16px 0;background:transparent;border:0;outline:none;color:white;font-size:21px}
+.wallet-available{margin-top:14px}
+.wallet-available strong{color:#55b6ff}
+.wallet-modal-message{color:#ff9c9c;font-size:13px;margin-top:15px;line-height:1.5}
+#walletConfirmButton{width:100%;margin-top:22px}
+.wallet-cancel{width:100%;margin-top:10px}
+.wallet-modal-content .notice{text-align:center;margin-top:18px}
 
 @media(max-width:700px){
 .landing-features{grid-template-columns:1fr}
@@ -664,7 +126,6 @@ line-height:1.6;
 .hero{padding-top:65px}
 .dashboard-main{padding:25px 17px}
 }
-
 @media(max-width:380px){
 .earning-grid{grid-template-columns:1fr}
 .stat-card h3{font-size:17px}
@@ -678,12 +139,10 @@ line-height:1.6;
 <body>
 
 <!-- LANDING PAGE -->
-
 <div id="landing">
 
 <header>
   <div class="brand">MY<span>FIN</span></div>
-
   <nav class="header-links">
     <a href="#features">Features</a>
     <a href="#about">About</a>
@@ -693,227 +152,114 @@ line-height:1.6;
 
 <section class="hero">
   <div class="hero-tag">YOUR FINANCIAL JOURNEY STARTS HERE</div>
-
   <h1>A smarter way to <span>earn, save</span> and grow.</h1>
+  <p>Explore a modern rewards and finance experience. Track your activity, discover earning opportunities and keep your goals moving forward.</p>
 
-  <p>
-    Explore a modern rewards and finance experience.
-    Track your activity, discover earning opportunities
-    and keep your goals moving forward.
-  </p>
+  <div class="hero-buttons">
+    <button class="primary-btn" onclick="startRegistration()">Get Started</button>
 
-<div class="hero-buttons">
-  <button class="primary-btn" onclick="startRegistration()">
-    Get Started
-  </button>
+    <button class="secondary-btn"
+      onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})">
+      Explore Features
+    </button>
 
-  <button class="secondary-btn"
-    onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})">
-    Explore Features
-  </button>
-
-
-<button
-  type="button"
-  onclick="previewMyfinDashboard()"
-  style="
-    display:block !important;
-    width:100%;
-    min-height:55px;
-    margin:18px 0;
-    padding:16px;
-    background:linear-gradient(135deg,#12345b,#0878d1);
-    border:2px solid #55b6ff;
-    border-radius:14px;
-    color:#ffffff;
-    font-size:16px;
-    font-weight:800;
-    cursor:pointer;
-    visibility:visible !important;
-    opacity:1 !important;
-  ">
-    PREVIEW MYFIN DASHBOARD
-</button>
-
-</div>
+    <button type="button" onclick="previewMyfinDashboard()"
+      style="display:block;width:100%;min-height:55px;margin:18px 0;padding:16px;background:linear-gradient(135deg,#12345b,#0878d1);border:2px solid #55b6ff;border-radius:14px;color:#fff;font-size:16px;font-weight:800;cursor:pointer;">
+      PREVIEW MYFIN DASHBOARD
+    </button>
+  </div>
 </section>
 
 <section class="landing-features" id="features">
-
-
   <article class="feature">
     <div class="icon">🎁</div>
     <h3>Rewards & Tasks</h3>
     <p>Discover the rewards area and see how earning opportunities can be organized.</p>
   </article>
-
   <article class="feature">
     <div class="icon">📈</div>
     <h3>Track Progress</h3>
     <p>Keep an eye on earnings, activity and your financial goals from one dashboard.</p>
   </article>
-
 </section>
 
-<footer id="about">
-  MYFIN demo experience · Built as a learning project
-</footer>
+<footer id="about">MYFIN demo experience · Built as a learning project</footer>
 
 </div>
 
 
 <!-- LOGIN SCREEN -->
-
 <section id="login" class="hidden">
-
   <div class="login-container">
 
     <div class="brand">MY<span>FIN</span></div>
 
     <!-- SIGN IN FORM -->
-
     <div id="signInView">
-
       <h2>Welcome Back</h2>
       <p>Sign in with your MYFIN account to continue.</p>
 
       <form id="loginForm">
-
         <label for="loginEmail">Email Address</label>
-        <input
-          type="email"
-          id="loginEmail"
-          placeholder="Enter your email"
-          autocomplete="email"
-          required
-        >
+        <input type="email" id="loginEmail" placeholder="Enter your email" autocomplete="email" required>
 
         <label for="loginPassword">Password</label>
-        <input
-          type="password"
-          id="loginPassword"
-          placeholder="Enter your password"
-          autocomplete="current-password"
-          required
-        >
+        <input type="password" id="loginPassword" placeholder="Enter your password" autocomplete="current-password" required>
 
         <p style="text-align:right;margin-top:12px;font-size:13px">
-          <a href="#" onclick="resetMyfinPassword();return false"
-             style="color:#55b6ff;text-decoration:none">
-            Forgot Password?
-          </a>
+          <a href="#" onclick="resetMyfinPassword();return false" style="color:#55b6ff;text-decoration:none">Forgot Password?</a>
         </p>
 
-        <button class="primary-btn" id="loginButton" type="submit">
-          Sign In
-        </button>
-
+        <button class="primary-btn" id="loginButton" type="submit">Sign In</button>
         <div id="loginMessage" class="login-message" role="alert"></div>
-
       </form>
 
       <p class="login-bottom">
         New to MYFIN?
-        <a href="#" onclick="showCreateAccount();return false">
-          Create Account
-        </a>
+        <a href="#" onclick="showCreateAccount();return false">Create Account</a>
       </p>
-
     </div>
 
     <!-- CREATE ACCOUNT FORM -->
-
     <div id="createAccountView" class="hidden">
-
       <h2>Create Your Account</h2>
       <p>Join MYFIN and start your rewards journey.</p>
 
       <form id="signupForm">
-
         <label for="signupName">Full Name</label>
-        <input
-          type="text"
-          id="signupName"
-          placeholder="Enter your full name"
-          autocomplete="name"
-          required
-        >
+        <input type="text" id="signupName" placeholder="Enter your full name" autocomplete="name" required>
 
         <label for="signupEmail">Email Address</label>
-        <input
-          type="email"
-          id="signupEmail"
-          placeholder="Enter your email"
-          autocomplete="email"
-          required
-        >
+        <input type="email" id="signupEmail" placeholder="Enter your email" autocomplete="email" required>
 
         <label for="signupPassword">Create Password</label>
-        <input
-          type="password"
-          id="signupPassword"
-          placeholder="At least 6 characters"
-          minlength="6"
-          autocomplete="new-password"
-          required
-        >
+        <input type="password" id="signupPassword" placeholder="At least 6 characters" minlength="6" autocomplete="new-password" required>
 
         <label for="signupConfirmPassword">Confirm Password</label>
-        <input
-          type="password"
-          id="signupConfirmPassword"
-          placeholder="Enter password again"
-          minlength="6"
-          autocomplete="new-password"
-          required
-        >
+        <input type="password" id="signupConfirmPassword" placeholder="Enter password again" minlength="6" autocomplete="new-password" required>
 
-        <button class="primary-btn" id="signupButton" type="submit">
-          Create My Account
-        </button>
-
+        <button class="primary-btn" id="signupButton" type="submit">Create My Account</button>
         <div id="signupMessage" class="login-message" role="alert"></div>
-
       </form>
 
       <p class="login-bottom">
         Already have an account?
-        <a href="#" onclick="showSignIn();return false">
-          Sign In
-        </a>
+        <a href="#" onclick="showSignIn();return false">Sign In</a>
       </p>
-
     </div>
 
-    <button
-      type="button"
-      onclick="previewMyfinDashboard()"
-      style="
-        width:100%;
-        margin-top:18px;
-        padding:15px;
-        border:1px solid #55b6ff;
-        border-radius:12px;
-        background:linear-gradient(135deg,#12345b,#0878d1);
-        color:white;
-        font-size:15px;
-        font-weight:700;
-        cursor:pointer;
-      ">
+    <button type="button" onclick="previewMyfinDashboard()"
+      style="width:100%;margin-top:18px;padding:15px;border:1px solid #55b6ff;border-radius:12px;background:linear-gradient(135deg,#12345b,#0878d1);color:white;font-size:15px;font-weight:700;cursor:pointer;">
       👁 Explore Dashboard Preview
     </button>
 
-    <p class="login-bottom">
-      <a onclick="showLanding()">Go back</a>
-    </p>
+    <p class="login-bottom"><a onclick="showLanding()">Go back</a></p>
 
   </div>
-
 </section>
 
 
 <!-- DASHBOARD -->
-
 <section id="dashboard" class="hidden">
 
   <header class="dashboard-header">
@@ -928,213 +274,142 @@ line-height:1.6;
         <h2 id="welcomeName">Welcome back, User 👋</h2>
         <p>Here's an overview of your earning activity.</p>
       </div>
-
-      <button class="secondary-btn" id="logoutButton" onclick="logoutUser()">
-        Log out
-      </button>
+      <button class="secondary-btn" id="logoutButton" onclick="logoutUser()">Log out</button>
     </div>
 
     <!-- BALANCE CARD -->
-
     <div class="balance-card">
       <div class="balance-label">AVAILABLE BALANCE</div>
       <div class="balance-amount">₦0.00</div>
-
-<div class="balance-footer">
-  <span>MYFIN Personal Wallet</span>
-  <span>● Account Overview</span>
-</div>
-
-<!-- MYFIN WALLET -->
-<div class="wallet-section">
-
-  <div class="wallet-header">
-    <div>
-      <div class="wallet-label">MYFIN WALLET</div>
-      <h3 style="color:white;margin-top:6px;">Wallet Overview</h3>
-    </div>
-  <span style="color:#25d69a;">● Active</span>
-  </div>
-
-  <div class="wallet-actions">
-    <button class="wallet-btn wallet-deposit"
-      onclick="openWalletForm('deposit')">
-      + Deposit
-    </button>
-
-    <button class="wallet-btn wallet-withdraw"
-      onclick="openWalletForm('withdraw')">
-      ↗ Withdraw
-    </button>
-  </div>
-
-  <div class="stats-grid" style="margin-top:18px;">
-    <div class="wallet-stat">
-      <small>Total Deposits</small>
-      <strong id="walletDeposits">₦0.00</strong>
-    </div>
-
-    <div class="wallet-stat">
-      <small>Total Withdrawals</small>
-      <strong id="walletWithdrawals">₦0.00</strong>
-    </div>
-  </div>
-
-  <h3 class="section-title" style="margin-top:22px;">
-    Recent Transactions
-  </h3>
-
-  <div id="walletTransactions">
-    <p style="color:#91a3bd;font-size:13px;">
-      No transactions yet.
-    </p>
-  </div>
-
-</div>
-
-
-<!-- MYFIN WALLET TRANSACTION MODAL -->
-<div id="walletModal" class="wallet-modal hidden">
-  <div class="wallet-modal-content">
-
-    <button class="wallet-close" onclick="closeWalletForm()">×</button>
-
-    <div class="earning-icon" id="walletModalIcon">💳</div>
-
-    <h2 id="walletModalTitle">Deposit Money</h2>
-
-    <p id="walletModalDescription">
-      Enter the amount you want to add to your demo wallet.
-    </p>
-
-    <div class="wallet-input-group">
-      <label for="walletAmount">Amount (NGN)</label>
-      <div class="wallet-input-wrap">
-        <span>₦</span>
-        <input
-          type="number"
-          id="walletAmount"
-          placeholder="0.00"
-          min="1"
-          step="0.01"
-        >
+      <div class="balance-footer">
+        <span>MYFIN Personal Wallet</span>
+        <span>● Account Overview</span>
       </div>
     </div>
 
-    <p class="wallet-available">
-      Available balance: <strong id="walletAvailable">₦0.00</strong>
-    </p>
+    <!-- WALLET -->
+    <div class="wallet-section">
 
-    <div id="walletModalMessage" class="wallet-modal-message"></div>
+      <div class="wallet-header">
+        <div>
+          <div class="wallet-label">MYFIN WALLET</div>
+          <h3 style="color:white;margin-top:6px;">Wallet Overview</h3>
+        </div>
+        <span style="color:#25d69a;">● Active</span>
+      </div>
 
-    <button
-      class="primary-btn"
-      id="walletConfirmButton"
-      onclick="confirmWalletTransaction()">
-      Confirm Deposit
-    </button>
+      <div class="wallet-actions">
+        <button class="wallet-btn wallet-deposit" onclick="openWalletForm('deposit')">+ Deposit</button>
+        <button class="wallet-btn wallet-withdraw" onclick="openWalletForm('withdraw')">↗ Withdraw</button>
+      </div>
 
-    <button class="secondary-btn wallet-cancel"
-      onclick="closeWalletForm()">
-      Cancel
-    </button>
+      <div class="stats-grid" style="margin-top:18px;">
+        <div class="wallet-stat">
+          <small>Total Deposits</small>
+          <strong id="walletDeposits">₦0.00</strong>
+        </div>
+        <div class="wallet-stat">
+          <small>Total Withdrawals</small>
+          <strong id="walletWithdrawals">₦0.00</strong>
+        </div>
+      </div>
 
-    <p class="notice">
-      Demo transaction only. No real money is transferred.
-    </p>
+      <h3 class="section-title" style="margin-top:22px;">Recent Transactions</h3>
 
-  </div>
-</div>
+      <div id="walletTransactions">
+        <p style="color:#91a3bd;font-size:13px;">No transactions yet.</p>
+      </div>
 
+    </div>
 
-<!-- EARNINGS OVERVIEW -->
+    <!-- WALLET MODAL -->
+    <div id="walletModal" class="wallet-modal hidden">
+      <div class="wallet-modal-content">
 
-<h3 class="section-title">Earnings Overview</h3>
+        <button class="wallet-close" onclick="closeWalletForm()">×</button>
 
-<div class="stats-grid">
+        <div class="earning-icon" id="walletModalIcon">💳</div>
+        <h2 id="walletModalTitle">Deposit Money</h2>
+        <p id="walletModalDescription">Enter the amount you want to add to your demo wallet.</p>
 
-  <div class="stat-card">
-    <p>Total Earnings</p>
-    <h3 id="total-earnings">₦0.00</h3>
-  </div>
+        <div class="wallet-input-group">
+          <label for="walletAmount">Amount (NGN)</label>
+          <div class="wallet-input-wrap">
+            <span>₦</span>
+            <input type="number" id="walletAmount" placeholder="0.00" min="1" step="0.01">
+          </div>
+        </div>
 
-  <div class="stat-card">
-    <p>Today's Earnings</p>
-    <h3 id="today-earnings">₦0.00</h3>
-  </div>
+        <p class="wallet-available">Available balance: <strong id="walletAvailable">₦0.00</strong></p>
 
-  <div class="stat-card">
-    <p>Pending Rewards</p>
-    <h3 id="pending-rewards">₦0.00</h3>
-  </div>
+        <div id="walletModalMessage" class="wallet-modal-message"></div>
 
-  <div class="stat-card">
-    <p>Lifetime Rewards</p>
-    <h3 id="lifetime-rewards">₦0.00</h3>
-  </div>
+        <button class="primary-btn" id="walletConfirmButton" onclick="confirmWalletTransaction()">Confirm Deposit</button>
+        <button class="secondary-btn wallet-cancel" onclick="closeWalletForm()">Cancel</button>
 
-</div>
+        <p class="notice">Demo transaction only. No real money is transferred.</p>
+
+      </div>
+    </div>
+
+    <!-- EARNINGS OVERVIEW -->
+    <h3 class="section-title">Earnings Overview</h3>
+
+    <div class="stats-grid">
+      <div class="stat-card"><p>Total Earnings</p><h3 id="total-earnings">₦0.00</h3></div>
+      <div class="stat-card"><p>Today's Earnings</p><h3 id="today-earnings">₦0.00</h3></div>
+      <div class="stat-card"><p>Pending Rewards</p><h3 id="pending-rewards">₦0.00</h3></div>
+      <div class="stat-card"><p>Lifetime Rewards</p><h3 id="lifetime-rewards">₦0.00</h3></div>
+    </div>
 
     <!-- QUICK ACTIONS -->
-
     <h3 class="section-title">Quick Actions</h3>
 
     <div class="actions-grid">
-
       <button class="action-card" onclick="demoNotice('Deposit')">
         <div class="action-icon">＋</div>
         <strong>Deposit Money</strong>
         <span>Add funds to your wallet</span>
       </button>
-
       <button class="action-card" onclick="demoNotice('Withdraw')">
         <div class="action-icon">↗</div>
         <strong>Withdraw</strong>
         <span>Request a withdrawal</span>
       </button>
-
       <button class="action-card" onclick="demoNotice('Rewards')">
         <div class="action-icon">🎁</div>
         <strong>Earn Rewards</strong>
         <span>Explore earning opportunities</span>
       </button>
-
       <button class="action-card" onclick="demoNotice('Referrals')">
         <div class="action-icon">👥</div>
         <strong>Referrals</strong>
         <span>Invite friends and earn</span>
       </button>
-
     </div>
 
     <!-- EARNING OPPORTUNITIES -->
-
     <div class="earning-section">
 
       <h3 class="section-title">Earning Opportunities</h3>
-
       <p>Explore different ways to engage with MYFIN.</p>
 
       <div class="earning-grid">
 
-      <div class="earning-card">
-  <div class="earning-icon">✅</div>
-  <h4>Daily Tasks</h4>
-  <p>Complete simple activities and earn demo reward credits.</p>
-  <button class="primary-btn" onclick="showDailyTasks()">
-    Explore Tasks
-  </button>
-</div>
+        <div class="earning-card">
+          <div class="earning-icon">✅</div>
+          <h4>Daily Tasks</h4>
+          <p>Complete simple activities and earn demo reward credits.</p>
+          <button class="primary-btn" onclick="showDailyTasks()">Explore Tasks</button>
+        </div>
 
-    <div class="earning-card">
-  <div class="earning-icon">🧠</div>
-  <h4>Quick Quiz</h4>
-  <p>Answer short questions, test your knowledge and collect demo rewards.</p>
-  <div class="earning-reward">Earn demo credits</div>
-  <button class="primary-btn" onclick="showQuiz()">
-    Start Quiz
-  </button>
-</div>
+        <div class="earning-card">
+          <div class="earning-icon">🧠</div>
+          <h4>Quick Quiz</h4>
+          <p>Answer short questions, test your knowledge and collect demo rewards.</p>
+          <div class="earning-reward">Earn demo credits</div>
+          <button class="primary-btn" onclick="showQuiz()">Start Quiz</button>
+        </div>
 
         <div class="earning-card">
           <div class="earning-icon">🎡</div>
@@ -1154,7 +429,6 @@ line-height:1.6;
     </div>
 
     <!-- RECENT ACTIVITY -->
-
     <h3 class="section-title">Recent Activity</h3>
 
     <div class="activity-card">
@@ -1171,27 +445,20 @@ line-height:1.6;
 
   </main>
 </section>
-  
-  
-  
-<!-- QUICK QUIZ SCREEN -->
 
+
+<!-- QUICK QUIZ SCREEN -->
 <section id="quizScreen" class="hidden">
 
   <header class="dashboard-header">
     <div class="brand">MY<span>FIN</span></div>
-    <button class="secondary-btn" onclick="closeQuiz()">
-      Back to Dashboard
-    </button>
+    <button class="secondary-btn" onclick="closeQuiz()">Back to Dashboard</button>
   </header>
 
   <main class="dashboard-main">
 
     <h2>MYFIN Quick Quiz 🧠</h2>
-
-    <p style="color:#91a5c5;margin:12px 0 25px">
-      Test your knowledge and earn demonstration reward credits.
-    </p>
+    <p style="color:#91a5c5;margin:12px 0 25px">Test your knowledge and earn demonstration reward credits.</p>
 
     <div class="balance-card">
       <div class="balance-label">YOUR QUIZ REWARDS</div>
@@ -1203,69 +470,38 @@ line-height:1.6;
     </div>
 
     <div class="earning-card" id="quizContainer">
-
-      <div class="earning-reward" id="quizProgress">
-        QUESTION 1 OF 3
-      </div>
-
-      <h3 id="quizQuestion" style="margin:18px 0">
-        Loading question...
-      </h3>
-
+      <div class="earning-reward" id="quizProgress">QUESTION 1 OF 3</div>
+      <h3 id="quizQuestion" style="margin:18px 0">Loading question...</h3>
       <div id="quizAnswers"></div>
-
-      <p id="quizFeedback"
-        style="margin-top:18px;font-size:13px;color:#91a5c5">
-      </p>
-
-      <button
-        class="primary-btn"
-        id="nextQuizButton"
-        onclick="nextQuizQuestion()"
-        style="display:none;width:100%;margin-top:20px">
-        Next Question
-      </button>
-
+      <p id="quizFeedback" style="margin-top:18px;font-size:13px;color:#91a5c5"></p>
+      <button class="primary-btn" id="nextQuizButton" onclick="nextQuizQuestion()"
+        style="display:none;width:100%;margin-top:20px">Next Question</button>
     </div>
 
-    <div class="activity-card" id="quizResult"
-      style="display:none;margin-top:20px;text-align:center">
-
+    <div class="activity-card" id="quizResult" style="display:none;margin-top:20px;text-align:center">
       <h2>Quiz Completed! 🎉</h2>
-
       <p id="quizScore" style="margin:15px 0"></p>
-
-      <button class="primary-btn" onclick="restartQuiz()">
-        Try Again
-      </button>
-
+      <button class="primary-btn" onclick="restartQuiz()">Try Again</button>
     </div>
 
-    <p class="notice">
-      Quiz rewards are demonstration credits only.
-      They are not real money and cannot be withdrawn.
-    </p>
+    <p class="notice">Quiz rewards are demonstration credits only. They are not real money and cannot be withdrawn.</p>
 
   </main>
 </section>
 
-  
-  <!-- DAILY TASKS SCREEN -->
 
+<!-- DAILY TASKS SCREEN -->
 <section id="dailyTasksScreen" class="hidden">
+
   <header class="dashboard-header">
     <div class="brand">MY<span>FIN</span></div>
-    <button class="secondary-btn" onclick="closeDailyTasks()">
-      Back to Dashboard
-    </button>
+    <button class="secondary-btn" onclick="closeDailyTasks()">Back to Dashboard</button>
   </header>
 
   <main class="dashboard-main">
 
     <h2>Daily Tasks 🎯</h2>
-    <p style="color:#91a5c5;margin:12px 0 25px">
-      Complete activities to collect demo reward credits.
-    </p>
+    <p style="color:#91a5c5;margin:12px 0 25px">Complete activities to collect demo reward credits.</p>
 
     <div class="balance-card">
       <div class="balance-label">YOUR DEMO TASK REWARDS</div>
@@ -1285,10 +521,7 @@ line-height:1.6;
         <h4>Welcome Task</h4>
         <p>Visit your MYFIN dashboard and get familiar with your account.</p>
         <div class="earning-reward">Reward: ₦50 demo credits</div>
-        <button class="primary-btn task-button"
-          onclick="completeTask('welcome',50,this)">
-          Complete Task
-        </button>
+        <button class="primary-btn task-button" onclick="completeTask('welcome',50,this)">Complete Task</button>
       </div>
 
       <div class="earning-card">
@@ -1296,10 +529,7 @@ line-height:1.6;
         <h4>Explore Your Dashboard</h4>
         <p>Explore the different sections of your MYFIN dashboard.</p>
         <div class="earning-reward">Reward: ₦100 demo credits</div>
-        <button class="primary-btn task-button"
-          onclick="completeTask('dashboard',100,this)">
-          Complete Task
-        </button>
+        <button class="primary-btn task-button" onclick="completeTask('dashboard',100,this)">Complete Task</button>
       </div>
 
       <div class="earning-card">
@@ -1307,52 +537,23 @@ line-height:1.6;
         <h4>Discover Rewards</h4>
         <p>Visit the rewards and earning opportunities section.</p>
         <div class="earning-reward">Reward: ₦150 demo credits</div>
-        <button class="primary-btn task-button"
-          onclick="completeTask('rewards',150,this)">
-          Complete Task
-        </button>
+        <button class="primary-btn task-button" onclick="completeTask('rewards',150,this)">Complete Task</button>
       </div>
 
     </div>
 
     <h3 class="section-title">Your Task History</h3>
+    <div class="activity-card" id="taskHistory">No tasks completed yet.</div>
 
-    <div class="activity-card" id="taskHistory">
-      No tasks completed yet.
-    </div>
-
-    <p class="notice">
-      These are demonstration rewards only. They are not real
-      money and cannot be deposited or withdrawn.
-    </p>
+    <p class="notice">These are demonstration rewards only. They are not real money and cannot be deposited or withdrawn.</p>
 
   </main>
 </section>
-  
+
+
 <!-- MYFIN JAVASCRIPT -->
-
-
 <script>
 /* SUPABASE CONNECTION */
-
-const SUPABASE_URL = 'https://shkfxrmvttqlczookpnb.supabase.co';
-
-/*
-  IMPORTANT:
-  Replace the text below with your EXISTING full Supabase
-  publishable key. Do not use a secret/service-role key.
-*/
-const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_UWEwhW_ZXeJMbgrEYqUcxg_6_ci96Zz';
-
-let myfinSupabase = null;
-
-try {
-  if (!window.supabase) {
-    throw new Error('Supabase library did not load.');
-  }
-
-  if (
-   /* SUPABASE CONNECTION */
 const SUPABASE_URL = 'https://shkfxrmvttqlczookpnb.supabase.co';
 const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_UWEwhW_ZXeJMbgrEYqUcxg_6_ci96Zz';
 
@@ -1367,9 +568,7 @@ try {
 }
 
 
-
 /* PAGE NAVIGATION */
-
 const landing = document.getElementById('landing');
 const login = document.getElementById('login');
 const dashboard = document.getElementById('dashboard');
@@ -1385,17 +584,30 @@ function showLogin() {
   landing.classList.add('hidden');
   login.classList.remove('hidden');
   dashboard.classList.add('hidden');
-
   document.getElementById('loginMessage').textContent = '';
+  showSignIn();
   window.scrollTo(0, 0);
+}
+
+/* Get Started button: opens the Create Account form */
+function startRegistration() {
+  showLogin();
+  showCreateAccount();
 }
 
 function previewMyfinDashboard() {
   landing.classList.add('hidden');
   login.classList.add('hidden');
   dashboard.classList.remove('hidden');
-
   renderWallet();
+  window.scrollTo(0, 0);
+}
+
+function showDashboard() {
+  landing.classList.add('hidden');
+  login.classList.add('hidden');
+  dashboard.classList.remove('hidden');
+  renderEarningsOverview();
   window.scrollTo(0, 0);
 }
 
@@ -1403,13 +615,8 @@ function renderEarningsOverview() {
   const quizData = getQuizData();
   const taskData = getDailyTaskData();
 
-  const todayEarnings =
-    Number(quizData.credits || 0) +
-    Number(taskData.credits || 0);
-
-  const lifetimeRewards = Number(
-    localStorage.getItem('myfinLifetimeRewards') || 0
-  );
+  const todayEarnings = Number(quizData.credits || 0) + Number(taskData.credits || 0);
+  const lifetimeRewards = Number(localStorage.getItem('myfinLifetimeRewards') || 0);
 
   const formatMoney = amount =>
     '₦' + amount.toLocaleString('en-NG', {
@@ -1417,31 +624,14 @@ function renderEarningsOverview() {
       maximumFractionDigits: 2
     });
 
-  document.getElementById('total-earnings').textContent =
-    formatMoney(lifetimeRewards);
-
-  document.getElementById('today-earnings').textContent =
-    formatMoney(todayEarnings);
-
-  document.getElementById('pending-rewards').textContent =
-    formatMoney(0);
-
-  document.getElementById('lifetime-rewards').textContent =
-    formatMoney(lifetimeRewards);
+  document.getElementById('total-earnings').textContent = formatMoney(lifetimeRewards);
+  document.getElementById('today-earnings').textContent = formatMoney(todayEarnings);
+  document.getElementById('pending-rewards').textContent = formatMoney(0);
+  document.getElementById('lifetime-rewards').textContent = formatMoney(lifetimeRewards);
 }
 
-function showDashboard() {
-  landing.classList.add('hidden');
-  login.classList.add('hidden');
-  dashboard.classList.remove('hidden');
-
-  renderEarningsOverview();
-
-  window.scrollTo(0, 0);
-}
 
 /* DISPLAY USER PROFILE */
-
 async function loadUserProfile(user) {
   const welcomeName = document.getElementById('welcomeName');
   const userInitial = document.getElementById('userInitial');
@@ -1471,8 +661,7 @@ async function loadUserProfile(user) {
 }
 
 
-// SWITCH BETWEEN SIGN IN AND CREATE ACCOUNT
-
+/* SWITCH BETWEEN SIGN IN AND CREATE ACCOUNT */
 function showCreateAccount() {
   document.getElementById('signInView').classList.add('hidden');
   document.getElementById('createAccountView').classList.remove('hidden');
@@ -1483,8 +672,8 @@ function showSignIn() {
   document.getElementById('signInView').classList.remove('hidden');
 }
 
-// CREATE NEW MYFIN ACCOUNT
 
+/* CREATE NEW MYFIN ACCOUNT */
 document.getElementById('signupForm').addEventListener('submit', async function(event) {
   event.preventDefault();
 
@@ -1496,6 +685,7 @@ document.getElementById('signupForm').addEventListener('submit', async function(
   const button = document.getElementById('signupButton');
   const message = document.getElementById('signupMessage');
 
+  message.style.color = '#ff9c9c';
   message.textContent = '';
 
   if (!myfinSupabase) {
@@ -1515,11 +705,7 @@ document.getElementById('signupForm').addEventListener('submit', async function(
     const { data, error } = await myfinSupabase.auth.signUp({
       email: email,
       password: password,
-      options: {
-        data: {
-          full_name: fullName
-        }
-      }
+      options: { data: { full_name: fullName } }
     });
 
     if (error) throw error;
@@ -1529,8 +715,7 @@ document.getElementById('signupForm').addEventListener('submit', async function(
       showDashboard();
     } else {
       message.style.color = '#55b6ff';
-      message.textContent =
-        'Account created! Please check your email to confirm your account, then sign in.';
+      message.textContent = 'Account created! Please check your email to confirm your account, then sign in.';
     }
 
   } catch (error) {
@@ -1544,8 +729,48 @@ document.getElementById('signupForm').addEventListener('submit', async function(
 });
 
 
-/* LOG OUT */
+/* SIGN IN */
+document.getElementById('loginForm').addEventListener('submit', async function(event) {
+  event.preventDefault();
 
+  const email = document.getElementById('loginEmail').value.trim();
+  const password = document.getElementById('loginPassword').value;
+  const button = document.getElementById('loginButton');
+  const message = document.getElementById('loginMessage');
+
+  message.style.color = '#ff9c9c';
+  message.textContent = '';
+
+  if (!myfinSupabase) {
+    message.textContent = 'Connection unavailable. Please try again later.';
+    return;
+  }
+
+  button.disabled = true;
+  button.textContent = 'Signing in...';
+
+  try {
+    const { data, error } = await myfinSupabase.auth.signInWithPassword({
+      email: email,
+      password: password
+    });
+
+    if (error) throw error;
+
+    await loadUserProfile(data.user);
+    showDashboard();
+
+  } catch (error) {
+    message.textContent = 'Sign in failed: ' + error.message;
+
+  } finally {
+    button.disabled = false;
+    button.textContent = 'Sign In';
+  }
+});
+
+
+/* LOG OUT */
 async function logoutUser() {
   const button = document.getElementById('logoutButton');
 
@@ -1559,10 +784,7 @@ async function logoutUser() {
 
   try {
     const { error } = await myfinSupabase.auth.signOut();
-
-    if (error) {
-      throw error;
-    }
+    if (error) throw error;
 
     document.getElementById('loginPassword').value = '';
     showLanding();
@@ -1576,34 +798,78 @@ async function logoutUser() {
   }
 }
 
-/* MYFIN QUICK QUIZ FEATURE */
 
+/* RESTORE AN EXISTING LOGIN SESSION */
+async function checkExistingSession() {
+  if (!myfinSupabase) return;
+
+  try {
+    const { data, error } = await myfinSupabase.auth.getSession();
+
+    if (error) {
+      console.warn('Session check:', error.message);
+      return;
+    }
+
+    if (data.session && data.session.user) {
+      await loadUserProfile(data.session.user);
+      showDashboard();
+    }
+
+  } catch (error) {
+    console.error('Session check failed:', error.message);
+  }
+}
+
+
+/* FORGOT PASSWORD */
+async function resetMyfinPassword() {
+  const email = document.getElementById('loginEmail').value.trim();
+  const message = document.getElementById('loginMessage');
+
+  if (!myfinSupabase) {
+    message.textContent = 'Supabase is not configured. Please check the connection.';
+    return;
+  }
+
+  if (!email) {
+    message.textContent = 'Enter your email address first, then tap Forgot Password.';
+    document.getElementById('loginEmail').focus();
+    return;
+  }
+
+  try {
+    const { error } = await myfinSupabase.auth.resetPasswordForEmail(email, {
+      redirectTo: window.location.origin + window.location.pathname
+    });
+
+    if (error) throw error;
+
+    message.style.color = '#55b6ff';
+    message.textContent = 'If an account exists for this email, a password reset link has been sent. Check your inbox.';
+
+  } catch (error) {
+    message.style.color = '#ff9c9c';
+    message.textContent = 'Password reset failed: ' + error.message;
+  }
+}
+
+
+/* MYFIN QUICK QUIZ FEATURE */
 const myfinQuizQuestions = [
   {
     question: 'What is the main purpose of saving money?',
-    answers: [
-      'To spend everything immediately',
-      'To prepare for future needs',
-      'To avoid planning'
-    ],
+    answers: ['To spend everything immediately', 'To prepare for future needs', 'To avoid planning'],
     correct: 1
   },
   {
     question: 'Which habit helps build financial discipline?',
-    answers: [
-      'Saving consistently',
-      'Ignoring your expenses',
-      'Spending without a budget'
-    ],
+    answers: ['Saving consistently', 'Ignoring your expenses', 'Spending without a budget'],
     correct: 0
   },
   {
     question: 'What is an emergency fund?',
-    answers: [
-      'Money for entertainment',
-      'Money reserved for unexpected expenses',
-      'Money borrowed from friends'
-    ],
+    answers: ['Money for entertainment', 'Money reserved for unexpected expenses', 'Money borrowed from friends'],
     correct: 1
   }
 ];
@@ -1614,18 +880,11 @@ let quizAnswered = false;
 
 function getQuizData() {
   const today = new Date().toISOString().slice(0, 10);
-  const saved = JSON.parse(
-    localStorage.getItem('myfinQuizData') || '{}'
-  );
+  const saved = JSON.parse(localStorage.getItem('myfinQuizData') || '{}');
 
   if (saved.date !== today) {
-    return {
-      date: today,
-      credits: 0,
-      completed: false
-    };
+    return { date: today, credits: 0, completed: false };
   }
-
   return saved;
 }
 
@@ -1663,10 +922,8 @@ function renderQuiz() {
   if (data.completed) {
     container.style.display = 'none';
     resultBox.style.display = 'block';
-
     document.getElementById('quizScore').textContent =
       'You have already completed today’s quiz. Come back tomorrow!';
-
     return;
   }
 
@@ -1677,12 +934,9 @@ function renderQuiz() {
   const current = myfinQuizQuestions[quizQuestionIndex];
 
   document.getElementById('quizProgress').textContent =
-    'QUESTION ' + (quizQuestionIndex + 1) +
-    ' OF ' + myfinQuizQuestions.length;
+    'QUESTION ' + (quizQuestionIndex + 1) + ' OF ' + myfinQuizQuestions.length;
 
-  document.getElementById('quizQuestion').textContent =
-    current.question;
-
+  document.getElementById('quizQuestion').textContent = current.question;
   document.getElementById('quizFeedback').textContent = '';
 
   document.getElementById('quizAnswers').innerHTML =
@@ -1697,7 +951,6 @@ function renderQuiz() {
 
 function selectQuizAnswer(answerIndex) {
   if (quizAnswered) return;
-
   quizAnswered = true;
 
   const current = myfinQuizQuestions[quizQuestionIndex];
@@ -1710,22 +963,15 @@ function selectQuizAnswer(answerIndex) {
 
   if (answerIndex === current.correct) {
     quizScore++;
-
-    document.getElementById('quizFeedback').textContent =
-      'Correct answer! Well done 🎉';
+    document.getElementById('quizFeedback').textContent = 'Correct answer! Well done 🎉';
   } else {
     document.getElementById('quizFeedback').textContent =
-      'Not quite! The correct answer is: ' +
-      current.answers[current.correct];
+      'Not quite! The correct answer is: ' + current.answers[current.correct];
   }
 
   const nextButton = document.getElementById('nextQuizButton');
-
   nextButton.textContent =
-    quizQuestionIndex === myfinQuizQuestions.length - 1
-      ? 'Finish Quiz'
-      : 'Next Question';
-
+    quizQuestionIndex === myfinQuizQuestions.length - 1 ? 'Finish Quiz' : 'Next Question';
   nextButton.style.display = 'block';
 }
 
@@ -1744,23 +990,20 @@ function nextQuizQuestion() {
 
 function finishQuiz() {
   const data = getQuizData();
-
   const reward = quizScore * 50;
 
   data.credits += reward;
   data.completed = true;
 
   localStorage.setItem('myfinQuizData', JSON.stringify(data));
-
-recordMyfinReward(reward);
+  recordMyfinReward(reward);
 
   document.getElementById('quizContainer').style.display = 'none';
   document.getElementById('quizResult').style.display = 'block';
 
   document.getElementById('quizScore').textContent =
-    'You answered ' + quizScore + ' out of ' +
-    myfinQuizQuestions.length + ' questions correctly. ' +
-    'You earned ₦' + reward + ' demo credits!';
+    'You answered ' + quizScore + ' out of ' + myfinQuizQuestions.length +
+    ' questions correctly. You earned ₦' + reward + ' demo credits!';
 
   document.getElementById('quizCredits').textContent =
     '₦' + data.credits.toLocaleString('en-NG') + '.00';
@@ -1777,26 +1020,18 @@ function restartQuiz() {
   quizQuestionIndex = 0;
   quizScore = 0;
   quizAnswered = false;
-
   renderQuiz();
 }
 
-/* MYFIN LIFETIME REWARD TRACKER */
 
+/* LIFETIME REWARD TRACKER */
 function recordMyfinReward(amount) {
-  const currentTotal = Number(
-    localStorage.getItem('myfinLifetimeRewards') || 0
-  );
-
-  localStorage.setItem(
-    'myfinLifetimeRewards',
-    currentTotal + amount
-  );
+  const currentTotal = Number(localStorage.getItem('myfinLifetimeRewards') || 0);
+  localStorage.setItem('myfinLifetimeRewards', currentTotal + amount);
 }
 
 
 /* DAILY TASKS FEATURE */
-
 const dailyTaskList = [
   { id: 'welcome', reward: 50, name: 'Welcome Task' },
   { id: 'dashboard', reward: 100, name: 'Explore Your Dashboard' },
@@ -1819,29 +1054,18 @@ function closeDailyTasks() {
   showDashboard();
 }
 
-
 function getDailyTaskData() {
   const today = new Date().toISOString().slice(0, 10);
-  const saved = JSON.parse(
-    localStorage.getItem('myfinDailyTasks') || '{}'
-  );
+  const saved = JSON.parse(localStorage.getItem('myfinDailyTasks') || '{}');
 
   if (saved.date !== today) {
-    return {
-      date: today,
-      credits: 0,
-      completed: []
-    };
+    return { date: today, credits: 0, completed: [] };
   }
-
   return saved;
 }
 
 function saveDailyTaskData(data) {
-  localStorage.setItem(
-    'myfinDailyTasks',
-    JSON.stringify(data)
-  );
+  localStorage.setItem('myfinDailyTasks', JSON.stringify(data));
 }
 
 function completeTask(taskId, reward, button) {
@@ -1852,9 +1076,7 @@ function completeTask(taskId, reward, button) {
     return;
   }
 
-  const task = dailyTaskList.find(
-    item => item.id === taskId
-  );
+  const task = dailyTaskList.find(item => item.id === taskId);
 
   if (!task || task.reward !== reward) {
     alert('Task could not be verified.');
@@ -1881,19 +1103,13 @@ function renderDailyTasks() {
   document.getElementById('taskHistory').innerHTML =
     data.completed.length
       ? data.completed.map(id => {
-          const task = dailyTaskList.find(
-            item => item.id === id
-          );
-
-          return task
-            ? '✅ ' + task.name + ' — ₦' + task.reward + ' credits'
-            : '';
+          const task = dailyTaskList.find(item => item.id === id);
+          return task ? '✅ ' + task.name + ' — ₦' + task.reward + ' credits' : '';
         }).join('<br>')
       : 'No tasks completed yet.';
 
   document.querySelectorAll('.task-button').forEach(button => {
     const match = button.getAttribute('onclick').match(/'([^']+)'/);
-
     if (!match) return;
 
     const taskId = match[1];
@@ -1908,44 +1124,28 @@ function renderDailyTasks() {
   });
 }
 
-renderDailyTasks();
-
-
 
 /* DEMO ACTIONS */
-
 function demoNotice(feature) {
-  alert(
-    feature +
-    ' is part of the MYFIN demo. This feature is not connected yet.'
-  );
+  alert(feature + ' is part of the MYFIN demo. This feature is not connected yet.');
 }
 
-/* MYFIN DEMO WALLET SYSTEM */
 
+/* DEMO WALLET SYSTEM */
 const MYFIN_WALLET_KEY = 'myfinDemoWallet';
 
 function getWalletData() {
   try {
-    const saved = JSON.parse(
-      localStorage.getItem(MYFIN_WALLET_KEY) || '{}'
-    );
+    const saved = JSON.parse(localStorage.getItem(MYFIN_WALLET_KEY) || '{}');
 
     return {
       balance: Number(saved.balance) || 0,
       deposits: Number(saved.deposits) || 0,
       withdrawals: Number(saved.withdrawals) || 0,
-      transactions: Array.isArray(saved.transactions)
-        ? saved.transactions
-        : []
+      transactions: Array.isArray(saved.transactions) ? saved.transactions : []
     };
   } catch (error) {
-    return {
-      balance: 0,
-      deposits: 0,
-      withdrawals: 0,
-      transactions: []
-    };
+    return { balance: 0, deposits: 0, withdrawals: 0, transactions: [] };
   }
 }
 
@@ -1968,22 +1168,13 @@ function renderWallet() {
   const withdrawals = document.getElementById('walletWithdrawals');
   const history = document.getElementById('walletTransactions');
 
-  if (balance) {
-    balance.textContent = formatWalletMoney(data.balance);
-  }
-
-  if (deposits) {
-    deposits.textContent = formatWalletMoney(data.deposits);
-  }
-
-  if (withdrawals) {
-    withdrawals.textContent = formatWalletMoney(data.withdrawals);
-  }
+  if (balance) balance.textContent = formatWalletMoney(data.balance);
+  if (deposits) deposits.textContent = formatWalletMoney(data.deposits);
+  if (withdrawals) withdrawals.textContent = formatWalletMoney(data.withdrawals);
 
   if (history) {
     if (data.transactions.length === 0) {
-      history.innerHTML =
-        '<p style="color:#91a3bd;font-size:13px;">No transactions yet.</p>';
+      history.innerHTML = '<p style="color:#91a3bd;font-size:13px;">No transactions yet.</p>';
     } else {
       history.innerHTML = data.transactions.slice(0, 10).map(item => {
         const positive = item.type === 'Deposit';
@@ -2005,8 +1196,7 @@ function renderWallet() {
 }
 
 
-/* MYFIN WALLET TRANSACTION FORMS */
-
+/* WALLET TRANSACTION FORMS */
 let currentWalletAction = 'deposit';
 
 function openWalletForm(type) {
@@ -2014,33 +1204,23 @@ function openWalletForm(type) {
 
   const data = getWalletData();
 
-  const modal = document.getElementById('walletModal');
-  const title = document.getElementById('walletModalTitle');
-  const description = document.getElementById('walletModalDescription');
-  const icon = document.getElementById('walletModalIcon');
-  const confirmButton = document.getElementById('walletConfirmButton');
-  const message = document.getElementById('walletModalMessage');
+  document.getElementById('walletModalTitle').textContent =
+    type === 'deposit' ? 'Deposit Money' : 'Withdraw Money';
 
-  title.textContent = type === 'deposit'
-    ? 'Deposit Money'
-    : 'Withdraw Money';
+  document.getElementById('walletModalDescription').textContent =
+    type === 'deposit'
+      ? 'Enter the amount you want to add to your demo wallet.'
+      : 'Enter the amount you want to withdraw from your demo wallet.';
 
-  description.textContent = type === 'deposit'
-    ? 'Enter the amount you want to add to your demo wallet.'
-    : 'Enter the amount you want to withdraw from your demo wallet.';
+  document.getElementById('walletModalIcon').textContent = type === 'deposit' ? '💳' : '↗';
 
-  icon.textContent = type === 'deposit' ? '💳' : '↗';
+  document.getElementById('walletConfirmButton').textContent =
+    type === 'deposit' ? 'Confirm Deposit' : 'Confirm Withdrawal';
 
-  confirmButton.textContent = type === 'deposit'
-    ? 'Confirm Deposit'
-    : 'Confirm Withdrawal';
-
-  document.getElementById('walletAvailable').textContent =
-    formatWalletMoney(data.balance);
-
+  document.getElementById('walletAvailable').textContent = formatWalletMoney(data.balance);
   document.getElementById('walletAmount').value = '';
-  message.textContent = '';
-  modal.classList.remove('hidden');
+  document.getElementById('walletModalMessage').textContent = '';
+  document.getElementById('walletModal').classList.remove('hidden');
 
   setTimeout(() => {
     document.getElementById('walletAmount').focus();
@@ -2101,128 +1281,13 @@ function confirmWalletTransaction() {
 }
 
 
-/* LOAD WALLET */
-
+/* RUN ON PAGE LOAD */
+renderDailyTasks();
 renderWallet();
-
-/* RESTORE AN EXISTING LOGIN SESSION */
-
-async function checkExistingSession() {
-  if (!myfinSupabase) {
-    return;
-  }
-
-  try {
-    const { data, error } = await myfinSupabase.auth.getSession();
-
-    if (error) {
-      console.warn('Session check:', error.message);
-      return;
-    }
-
-    if (data.session && data.session.user) {
-      await loadUserProfile(data.session.user);
-      showDashboard();
-    }
-
-  } catch (error) {
-    console.error('Session check failed:', error.message);
-  }
-}
-
-async function resetMyfinPassword() {
-  const email = document.getElementById('loginEmail').value.trim();
-  const message = document.getElementById('loginMessage');
-
-  if (!myfinSupabase) {
-    message.textContent = 'Supabase is not configured. Please check the connection.';
-    return;
-  }
-
-  if (!email) {
-    message.textContent = 'Enter your email address first, then tap Forgot Password.';
-    document.getElementById('loginEmail').focus();
-    return;
-  }
-
-  try {
-    const { error } = await myfinSupabase.auth.resetPasswordForEmail(email, {
-      redirectTo: window.location.origin + window.location.pathname
-    });
-
-    if (error) throw error;
-
-    message.style.color = '#55b6ff';
-    message.textContent = 'If an account exists for this email, a password reset link has been sent. Check your inbox.';
-
-  } catch (error) {
-    message.style.color = '#ff9c9c';
-    message.textContent = 'Password reset failed: ' + error.message;
-  }
-}
-
 checkExistingSession();
- 
-/* SIGN IN */
-
-document.getElementById('loginForm').addEventListener('submit', async function(event) {
-  event.preventDefault();
-
-  const email = document.getElementById('loginEmail').value.trim();
-  const password = document.getElementById('loginPassword').value;
-  const button = document.getElementById('loginButton');
-  const message = document.getElementById('loginMessage');
-
-  message.style.color = '#ff9c9c';
-  message.textContent = '';
-
-  if (!myfinSupabase) {
-    message.textContent = 'Connection unavailable. Please try again later.';
-    return;
-  }
-
-  button.disabled = true;
-  button.textContent = 'Signing in...';
-
-  try {
-    const { data, error } = await myfinSupabase.auth.signInWithPassword({
-      email: email,
-      password: password
-    });
-
-    if (error) throw error;
-
-    await loadUserProfile(data.user);
-    showDashboard();
-
-  } catch (error) {
-    message.textContent = 'Sign in failed: ' + error.message;
-
-  } finally {
-    button.disabled = false;
-    button.textContent = 'Sign In';
-  }
-});
-
-/* GET STARTED OPENS CREATE ACCOUNT */
-
-function showLogin() {
-  landing.classList.add('hidden');
-  login.classList.remove('hidden');
-  dashboard.classList.add('hidden');
-
-  document.getElementById('loginMessage').textContent = '';
-  showSignIn();
-  window.scrollTo(0, 0);
-}
-
-function startRegistration() {
-  showLogin();
-  showCreateAccount();
-}
-
-
 </script>
+</body>
+</html></script>
 </body>
 </html>
 
