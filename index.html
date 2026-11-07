@@ -1352,21 +1352,19 @@ try {
 
   if (
    /* SUPABASE CONNECTION */
-
 const SUPABASE_URL = 'https://shkfxrmvttqlczookpnb.supabase.co';
-const SUPABASE_PUBLISHABLE_KEY = 'PASTE_YOUR_KEY_HERE';
+const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_UWEwhW_ZXeJMbgrEYqUcxg_6_ci96Zz';
 
 let myfinSupabase = null;
 
 try {
-  myfinSupabase = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_PUBLISHABLE_KEY
-  );
+  if (!window.supabase) throw new Error('Supabase library did not load.');
+  myfinSupabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
   console.log('MYFIN Supabase client initialized.');
 } catch (error) {
   console.error('MYFIN Supabase setup:', error.message);
 }
+
 
 
 /* PAGE NAVIGATION */
