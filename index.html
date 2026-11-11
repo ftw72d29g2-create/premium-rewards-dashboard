@@ -139,86 +139,41 @@ footer{padding:25px 8%;border-top:1px solid var(--border);color:var(--muted);fon
 <body>
 
 <!-- LANDING PAGE -->
-<div id="landing">
-
-<header>
-  <div class="brand">MY<span>FIN</span></div>
-  <nav class="header-links">
-    <a href="#features">Features</a>
-    <a href="#about">About</a>
-    <a class="login-link" href="#" onclick="showLogin();return false">Sign In</a>
-  </nav>
-</header>
-
-<section class="hero">
-  <div class="hero-tag">YOUR FINANCIAL JOURNEY STARTS HERE</div>
-  <h1>A smarter way to <span>earn, save</span> and grow.</h1>
-  <p>Explore a modern rewards and finance experience. Track your activity, discover earning opportunities and keep your goals moving forward.</p>
-
-  <div class="hero-buttons">
-    <button class="primary-btn" onclick="startRegistration()">Get Started</button>
-
-    <button class="secondary-btn"
-      onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})">
-      Explore Features
-    </button>
-
-    <button type="button" onclick="previewMyfinDashboard()"
-      style="display:block;width:100%;min-height:55px;margin:18px 0;padding:16px;background:linear-gradient(135deg,#12345b,#0878d1);border:2px solid #55b6ff;border-radius:14px;color:#fff;font-size:16px;font-weight:800;cursor:pointer;">
-      PREVIEW MYFIN DASHBOARD
-    </button>
-  </div>
-</section>
-
-<section class="landing-features" id="features">
-  <article class="feature">
-    <div class="icon">🎁</div>
-    <h3>Rewards & Tasks</h3>
-    <p>Discover the rewards area and see how earning opportunities can be organized.</p>
-  </article>
-  <article class="feature">
-    <div class="icon">📈</div>
-    <h3>Track Progress</h3>
-    <p>Keep an eye on earnings, activity and your financial goals from one dashboard.</p>
-  </article>
-</section>
-
-<footer id="about">MYFIN demo experience · Built as a learning project</footer>
-
+<div id="landing" style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:25px">
+  <div class="brand" style="margin-bottom:30px">MY<span>FIN</span></div>
+  <button class="primary-btn" onclick="startRegistration()">Get Started</button>
 </div>
 
 
-<!-- LOGIN SCREEN -->
+
+<!-- CREATE ACCOUNT SCREEN -->
 <section id="login" class="hidden">
   <div class="login-container">
-
     <div class="brand">MY<span>FIN</span></div>
+    <h2>Create Your Account</h2>
+    <p>Join MYFIN and start your rewards journey.</p>
 
-    <!-- SIGN IN FORM -->
-    <div id="signInView">
-      <h2>Welcome Back</h2>
-      <p>Sign in with your MYFIN account to continue.</p>
+    <form id="signupForm">
+      <label for="signupName">Full Name</label>
+      <input type="text" id="signupName" placeholder="Enter your full name" required>
 
-      <form id="loginForm">
-        <label for="loginEmail">Email Address</label>
-        <input type="email" id="loginEmail" placeholder="Enter your email" autocomplete="email" required>
+      <label for="signupPhone">Phone Number</label>
+      <input type="tel" id="signupPhone" placeholder="Enter your phone number" required>
 
-        <label for="loginPassword">Password</label>
-        <input type="password" id="loginPassword" placeholder="Enter your password" autocomplete="current-password" required>
+      <label for="signupEmail">Email Address</label>
+      <input type="email" id="signupEmail" placeholder="Enter your email" required>
 
-        <p style="text-align:right;margin-top:12px;font-size:13px">
-          <a href="#" onclick="resetMyfinPassword();return false" style="color:#55b6ff;text-decoration:none">Forgot Password?</a>
-        </p>
+      <label for="signupPassword">Password</label>
+      <input type="password" id="signupPassword" placeholder="At least 6 characters" minlength="6" required>
 
-        <button class="primary-btn" id="loginButton" type="submit">Sign In</button>
-        <div id="loginMessage" class="login-message" role="alert"></div>
-      </form>
+      <button class="primary-btn" id="signupButton" type="submit">Create Account</button>
+      <div id="signupMessage" class="login-message"></div>
+    </form>
 
-      <p class="login-bottom">
-        New to MYFIN?
-        <a href="#" onclick="showCreateAccount();return false">Create Account</a>
-      </p>
-    </div>
+    <p class="login-bottom"><a href="#" onclick="showLanding();return false">Go back</a></p>
+  </div>
+</section>
+
 
     <!-- CREATE ACCOUNT FORM -->
     <div id="createAccountView" class="hidden">
