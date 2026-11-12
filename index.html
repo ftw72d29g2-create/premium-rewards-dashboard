@@ -580,9 +580,11 @@ document.getElementById('signupForm').addEventListener('submit', async function(
 
     if (error) throw error;
 
-    if (data.session && data.user) {
+        if (data.session && data.user) {
       await loadUserProfile(data.user);
+      setGreeting(fullName);
       showDashboard();
+
     } else {
       message.style.color = '#55b6ff';
       message.textContent = 'Account created! Please check your email to confirm your account.';
