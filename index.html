@@ -547,6 +547,12 @@ async function loadUserProfile(user) {
   userInitial.textContent = displayName.charAt(0).toUpperCase();
 }
 
+function setGreeting(fullName) {
+  const firstName = (fullName || '').trim().split(' ')[0] || 'there';
+  const el = document.getElementById('greeting');
+  if (el) el.textContent = 'Hello, ' + firstName;
+}
+
 
 /* CREATE NEW MYFIN ACCOUNT */
 document.getElementById('signupForm').addEventListener('submit', async function(event) {
