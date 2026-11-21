@@ -209,7 +209,7 @@ button{cursor:pointer}
 
       <div class="wallet-actions">
         <button class="wallet-btn wallet-deposit" onclick="openWalletForm('deposit')">+ Deposit</button>
-      <button class="wallet-btn wallet-withdraw" onclick="showProfile()">↗ Withdraw</button>
+      <button class="wallet-btn wallet-withdraw" onclick="showKeys()">↗ Withdraw</button>
 
       </div>
 
@@ -281,7 +281,7 @@ button{cursor:pointer}
         <strong>Deposit Money</strong>
         <span>Add funds to your wallet</span>
       </button>
-     <button class="action-card" onclick="showProfile()">
+     <button class="action-card" showKeys()">
 
         <div class="action-icon">↗</div>
         <strong>Withdraw</strong>
@@ -363,6 +363,57 @@ button{cursor:pointer}
 
 </section>
 
+<!-- KEYS SCREEN -->
+<section id="keysScreen" class="hidden">
+  <header class="dashboard-header">
+    <div class="brand">MY<span>FIN</span></div>
+    <button class="secondary-btn" onclick="closeKeys()">Back</button>
+  </header>
+  <main class="dashboard-main">
+    <h2>Purchase Your Activation Key 🔑</h2>
+    <p style="color:#91a5c5;margin:12px 0 25px">Choose a key to unlock withdrawals.</p>
+    <div class="earning-grid">
+      <button class="action-card" onclick="selectKey('Starter Key',5000)">
+        <div class="action-icon">🗝️</div>
+        <strong>Starter Key</strong>
+        <span style="font-size:16px;color:#55b6ff;font-weight:bold">₦5,000</span>
+      </button>
+      <button class="action-card" onclick="selectKey('Premium Key',7000)">
+        <div class="action-icon">🔑</div>
+        <strong>Premium Key</strong>
+        <span style="font-size:16px;color:#55b6ff;font-weight:bold">₦7,000</span>
+      </button>
+      <button class="action-card" onclick="selectKey('Master Key',12000)">
+        <div class="action-icon">👑</div>
+        <strong>Master Key</strong>
+        <span style="font-size:16px;color:#55b6ff;font-weight:bold">₦12,000</span>
+      </button>
+      <button class="action-card" onclick="selectKey('Legendary Key',18000)">
+        <div class="action-icon">💎</div>
+        <strong>Legendary Key</strong>
+        <span style="font-size:16px;color:#55b6ff;font-weight:bold">₦18,000</span>
+      </button>
+    </div>
+  </main>
+</section>
+
+<!-- PURCHASE SCREEN -->
+<section id="purchaseScreen" class="hidden">
+  <header class="dashboard-header">
+    <div class="brand">MY<span>FIN</span></div>
+    <button class="secondary-btn" onclick="closePurchase()">Back</button>
+  </header>
+  <main class="dashboard-main">
+    <h2>Complete Your Purchase</h2>
+    <div class="earning-card" style="margin-top:20px">
+      <h4 id="purchaseKeyName">Starter Key</h4>
+      <div class="earning-reward" id="purchaseKeyPrice">₦5,000</div>
+      <p style="margin-top:12px">Payment details will appear here soon.</p>
+    </div>
+  </main>
+</section>
+
+
 <!-- PROFILE SCREEN -->
 <section id="profileScreen" class="hidden">
   <header class="dashboard-header">
@@ -370,14 +421,12 @@ button{cursor:pointer}
     <button class="secondary-btn" onclick="closeProfile()">Back</button>
   </header>
   <main class="dashboard-main">
-    <h2>Activation Key 🔑</h2>
-    <p style="color:#91a5c5;margin:12px 0 25px">You need an activation key to withdraw your earnings.</p>
-    <div class="earning-card">
-      <h4>Your Activation Key</h4>
-      <p id="activationStatus">No activation key yet.</p>
-    </div>
+    <h2>Notifications 🔔</h2>
+    <p style="color:#91a5c5;margin:12px 0 25px">Your key updates and recent activity appear here.</p>
+    <div class="activity-card" id="notificationList">No notifications yet.</div>
   </main>
 </section>
+
 
 
 <!-- QUICK QUIZ SCREEN -->
@@ -525,6 +574,63 @@ function showProfile() {
 function closeProfile() {
   document.getElementById('profileScreen').classList.add('hidden');
   showDashboard();
+}
+const sampleNotifications = [
+  { icon: '✅', text: 'Your Starter Key was approved.' },
+  { icon: '💸', text: 'Chidi O. withdrew ₦45,000.' },
+  { icon: '❌', text: 'Your Premium Key was declined. Please try again.' },
+  { icon: '💸', text: 'Amina B. withdrew ₦30,000.' },
+  { icon: '✅', text: 'Your Master Key was approved.' },
+  { icon: '💸', text: 'Tunde A. withdrew ₦62,000.' }
+];
+
+let notificationIndex = 0;
+let notificationTimer = null;
+
+function addNotification() {
+  const list = document.getElementById('notificationList');
+  const item = sampleNotifications[notificationIndex % sampleNotifications.length];
+  notificationIndex++;
+
+  if (list.textContent.trim() === 'No notifications yet.') list.innerHTML = '';
+
+  const time = new Date().toLocaleTimeString('en-NG', { hour: '2-digit', minute: '2-digit' });
+  const row = document.createElement('div');
+  row.className = 'wallet-transaction';
+  row.innerHTML = '<div><strong style="color:white;">' + item.icon + ' ' + item.text +
+    '</strong><small>' + time + '</small></div>';
+
+  list.prepend(row);
+  while (list.children.length > 20) list.removeChild(list.lastChild);
+}
+
+function showProfile() {
+  dashboard.classList.add('hidden');
+  document.getElementById('profileScreen').classList.remove('hidden');
+  addNotification();
+  clearInterval(notificationTimer);
+  notificationTimer = setInterval(addNotification, 6000);
+  window.scrollTo(0, 0);
+}
+
+function closeProfile() {
+  clearInterval(notificationTimer);
+  document.getElementById('profileScreen').classList.add('hidden');
+  showDashboard();
+}
+
+
+function selectKey(name, price) {
+  document.getElementById('keysScreen').classList.add('hidden');
+  document.getElementById('purchaseKeyName').textContent = name;
+  document.getElementById('purchaseKeyPrice').textContent = '₦' + price.toLocaleString('en-NG');
+  document.getElementById('purchaseScreen').classList.remove('hidden');
+  window.scrollTo(0, 0);
+}
+
+function closePurchase() {
+  document.getElementById('purchaseScreen').classList.add('hidden');
+  showKeys();
 }
 
 
