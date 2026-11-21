@@ -105,6 +105,14 @@ button{cursor:pointer}
 .wallet-cancel{width:100%;margin-top:10px}
 .wallet-modal-content .notice{text-align:center;margin-top:18px}
 
+/* BOTTOM NAVIGATION */
+.bottom-nav{position:fixed;left:0;right:0;bottom:0;z-index:500;display:flex;justify-content:space-around;background:#0b1527;border-top:1px solid var(--border);padding:10px 0 18px}
+.nav-item{background:transparent;border:0;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:4px;font-size:12px;min-width:80px}
+.nav-item span{font-size:22px}
+.nav-item.active{color:var(--cyan)}
+#dashboard{padding-bottom:100px}
+
+
 @media(max-width:700px){
 .stats-grid{grid-template-columns:repeat(2,1fr)}
 .actions-grid{grid-template-columns:repeat(2,1fr)}
@@ -153,9 +161,11 @@ button{cursor:pointer}
       <div id="signupMessage" class="login-message" role="alert"></div>
     </form>
 
-    <p class="login-bottom"><a href="#" onclick="showLanding();return false">Go back</a></p>
+       <p class="login-bottom"><a href="#" onclick="showLanding();return false">Go back</a></p>
+    <p class="login-bottom"><a href="#" onclick="previewDashboard();return false">Skip to dashboard (preview)</a></p>
   </div>
 </section>
+
 
 
 <!-- DASHBOARD -->
@@ -199,7 +209,8 @@ button{cursor:pointer}
 
       <div class="wallet-actions">
         <button class="wallet-btn wallet-deposit" onclick="openWalletForm('deposit')">+ Deposit</button>
-        <button class="wallet-btn wallet-withdraw" onclick="openWalletForm('withdraw')">↗ Withdraw</button>
+      <button class="wallet-btn wallet-withdraw" onclick="showProfile()">↗ Withdraw</button>
+
       </div>
 
       <div class="stats-grid" style="margin-top:18px;">
@@ -270,7 +281,8 @@ button{cursor:pointer}
         <strong>Deposit Money</strong>
         <span>Add funds to your wallet</span>
       </button>
-      <button class="action-card" onclick="demoNotice('Withdraw')">
+     <button class="action-card" onclick="showProfile()">
+
         <div class="action-icon">↗</div>
         <strong>Withdraw</strong>
         <span>Request a withdrawal</span>
@@ -342,6 +354,28 @@ button{cursor:pointer}
       provider or banking service is connected.
     </p>
 
+  </main>
+  <nav class="bottom-nav">
+  <button class="nav-item active" onclick="goHome()"><span>🏠</span>Home</button>
+  <button class="nav-item" onclick="goAbout()"><span>ℹ️</span>About</button>
+  <button class="nav-item" onclick="goProfile()"><span>👤</span>Profile</button>
+</nav>
+
+</section>
+
+<!-- PROFILE SCREEN -->
+<section id="profileScreen" class="hidden">
+  <header class="dashboard-header">
+    <div class="brand">MY<span>FIN</span></div>
+    <button class="secondary-btn" onclick="closeProfile()">Back</button>
+  </header>
+  <main class="dashboard-main">
+    <h2>Activation Key 🔑</h2>
+    <p style="color:#91a5c5;margin:12px 0 25px">You need an activation key to withdraw your earnings.</p>
+    <div class="earning-card">
+      <h4>Your Activation Key</h4>
+      <p id="activationStatus">No activation key yet.</p>
+    </div>
   </main>
 </section>
 
@@ -478,6 +512,22 @@ function showLanding() {
   dashboard.classList.add('hidden');
   window.scrollTo(0, 0);
 }
+function goHome() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+function goAbout() { }
+function goProfile() { showProfile(); }
+
+function showProfile() {
+  dashboard.classList.add('hidden');
+  document.getElementById('profileScreen').classList.remove('hidden');
+  window.scrollTo(0, 0);
+}
+
+function closeProfile() {
+  document.getElementById('profileScreen').classList.add('hidden');
+  showDashboard();
+}
+
+
 
 /* Get Started button: opens the Create Account form */
 function startRegistration() {
@@ -496,6 +546,13 @@ function showDashboard() {
   renderEarningsOverview();
   window.scrollTo(0, 0);
 }
+function previewDashboard() {
+  document.getElementById('welcomeName').textContent = 'Welcome, Guest 👋';
+  document.getElementById('userInitial').textContent = 'G';
+  showDashboard();
+}
+
+
 
 function renderEarningsOverview() {
   const quizData = getQuizData();
@@ -1088,7 +1145,6 @@ function confirmWalletTransaction() {
 /* RUN ON PAGE LOAD */
 renderDailyTasks();
 renderWallet();
-checkExistingSession();
 </script>
 </body>
 </html>
